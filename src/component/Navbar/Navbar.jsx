@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FiSun, FiMoon, FiUser, FiMenu, FiX } from "react-icons/fi";
 import { IoLanguageOutline } from "react-icons/io5";
 import { data } from "../../assets/data";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,47 +12,59 @@ const Navbar = () => {
     // const [showLangMenu, setShowLangMenu] = useState(false);
     const [activeItem, setActiveItem] = useState("home");
 
+
     useEffect(() => {
         document.documentElement.classList.toggle("dark", isDark);
     }, [isDark]);
 
-    const menuItems = ["home", "special", "news", "about", "contact"];
+    const menuItems = [
+        { name: "home", path: "/" },
+        { name: "special", path: "" },
+        { name: "news", path: "" },
+        { name: "about", path: "" },
+        { name: "contact", path: "contact" },
+    ];
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const toggleTheme = () => setIsDark(!isDark);
     const toggleUserMenu = () => setShowUserMenu(!showUserMenu);
     // const toggleLangMenu = () => setShowLangMenu(!showLangMenu);
 
+    const handleLogoClick = () => {
+        setActiveItem("home"); // Set activeItem to "home" when the logo is clicked
+    };
+
     return (
         <div className="relative bg-card dark:bg-secondary-foreground shadow-lg sticky w-full top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     {/* Left Section */}
-                    <div className="flex items-center">
-                        <a href="">
+                    <Link className="flex items-center" to={'/'} onClick={handleLogoClick}>
+                        <div>
                             <img
                                 src={data.logo_brand}
                                 alt="Logo"
                                 className="h-14 rounded-md"
                             />
-                        </a>
-                    </div>
+                        </div>
+                    </Link>
 
                     {/* Center Section - Desktop */}
                     <div className="hidden md:flex items-center space-x-8">
                         {menuItems.map((item) => (
-                            <button
-                                key={item}
-                                onClick={() => setActiveItem(item)}
-                                className={`text-accent hover:text-primary dark:text-muted-foreground dark:hover:text-primary-foreground capitalize relative group ${activeItem === item ? "text-primary dark:text-primary-foreground" : ""
+                            <Link
+                                key={item.name}
+                                to={item.path} // Use the path from the menu item
+                                onClick={() => setActiveItem(item.name)}
+                                className={`text-accent hover:text-primary dark:text-muted-foreground dark:hover:text-primary-foreground capitalize relative group ${activeItem === item.name ? "text-primary dark:text-primary-foreground" : ""
                                     }`}
                             >
-                                {item}
+                                {item.name}
                                 <span
-                                    className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-primary-foreground transition-all duration-300 group-hover:w-full ${activeItem === item ? "w-full" : ""
+                                    className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-primary-foreground transition-all duration-300 group-hover:w-full ${activeItem === item.name ? "w-full" : ""
                                         }`}
                                 />
-                            </button>
+                            </Link>
                         ))}
                     </div>
 
