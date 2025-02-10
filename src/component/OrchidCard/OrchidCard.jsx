@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import QuickViewModel from '../OrchidSection/QuickViewModel'; 
 import StarRating from '../../utils/StarRating';
+import Ribbon from '../Ribbon/Ribbon';
 
-const OrchidCard = ({ id, image, name, origin, rating, category, description }) => {
+const OrchidCard = ({ id, image, name, origin, isSpecial, rating, category, description }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
@@ -20,6 +21,8 @@ const OrchidCard = ({ id, image, name, origin, rating, category, description }) 
     return (
         <>
             <div className='w-full mb-4 bg-white dark:bg-black rounded-xl shadow-xl hover:shadow-2xl transition-all transform duration-500 overflow-hidden'>
+                <Ribbon isSpecial={isSpecial} />
+                
                 <div className='relative group'>
                     <img
                         className='w-full h-80 object-cover rounded-t-md transition-transform duration-500 cursor-pointer group-hover:scale-105'
@@ -71,6 +74,7 @@ OrchidCard.propTypes = {
     category: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
+    isSpecial: PropTypes.bool.isRequired,
 };
 
 export default OrchidCard;
