@@ -12,6 +12,7 @@ const OrchidSection = () => {
           image={orchid.image}
           name={orchid.name}
           origin={orchid.origin}
+          rating={orchid.rating}
           category={orchid.category}
           description={orchid.description}
           />

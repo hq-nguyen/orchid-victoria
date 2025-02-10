@@ -4,8 +4,9 @@ import { FaArrowRight } from "react-icons/fa";
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import QuickViewModel from '../OrchidSection/QuickViewModel'; 
+import StarRating from '../../utils/StarRating';
 
-const OrchidCard = ({ id, image, name, origin, category, description }) => {
+const OrchidCard = ({ id, image, name, origin, rating, category, description }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
@@ -35,30 +36,16 @@ const OrchidCard = ({ id, image, name, origin, category, description }) => {
                 </div>
 
                 {/* content section */}
-                <div className='mt-2 p-4'>
-                    <Link to={`/orchid/${id}`} className='text-base font-bold text-gray-700 dark:text-white hover:text-red-600 duration-200'>{name}</Link>
+                <div className='p-4'>
+                    <Link to={`/orchid/${id}`} className='text-base font-bold text-gray-700 dark:text-white dark:hover:text-blue-600 hover:text-red-600 duration-200
+                                                          truncate w-full block overflow-hidden whitespace-nowrap'>
+                        {name}
+                    </Link>
                     <p className="flex items-center text-xs font-semibold text-gray-600 dark:text-white"><CiLocationOn className='mr-2' /> {origin}</p>
-                    <div className="flex items-center mt-2.5 mb-5">
+                    <div className="flex items-center mb-2">
                         {/* star - hardcode */}
                         <div className="flex items-center mt-2.5 mb-2">
-                            <div className="flex items-center space-x-1 rtl:space-x-reverse">
-                                <svg className="w-3 h-3 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg className="w-3 h-3 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg className="w-3 h-3 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg className="w-3 h-3 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                                <svg className="w-3 h-3 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                </svg>
-                            </div>
-                            <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
+                            <StarRating rating={rating} />
                         </div>
                     </div>
 
@@ -83,6 +70,7 @@ OrchidCard.propTypes = {
     origin: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
 };
 
 export default OrchidCard;

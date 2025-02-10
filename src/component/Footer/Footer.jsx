@@ -1,13 +1,22 @@
 import { FaFacebook, FaInstagram, FaTwitter, FaPinterest, FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { data } from "../../assets/data";
+import { Link } from "react-router-dom";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const navigation = [
+    { name: "Home", path: "/" },
+    { name: "About Orchids", path: "/" },
+    { name: "Species Guide", path: "/" },
+    { name: "Care Tips", path: "/" },
+    { name: "Contact", path: "/contact" },
+  ];
+
   return (
-    <footer className="bg-gradient-to-r from-muted-foreground/5 to-secondary/20 text-foreground">
+    <footer className="border-t-4 dark:border-red-600 dark:bg-gray-900 dark:text-white text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
+          {/* Information */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <img
@@ -27,20 +36,14 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-heading mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {[
-                "Home",
-                "About Orchids",
-                "Species Guide",
-                "Care Tips",
-                "Contact",
-              ].map((link) => (
-                <li key={link}>
-                  <button
+              {navigation.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
                     className="text-accent hover:text-primary transition-colors duration-200"
-                    onClick={() => console.log(`Navigate to ${link}`)}
                   >
-                    {link}
-                  </button>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -52,15 +55,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <FaEnvelope className="text-primary" />
-                <span className="text-accent">info@orchidhaven.com</span>
+                <span className="text-accent">info@orchidvictoria.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <FaPhone className="text-primary" />
-                <span className="text-accent">+1 (555) 123-4567</span>
+                <span className="text-accent">+84 (111) 123-456</span>
               </div>
               <div className="flex items-center space-x-2">
                 <FaMapMarkerAlt className="text-primary" />
-                <span className="text-accent">123 Botanical Garden St, FL 12345</span>
+                <span className="text-accent">Long My Thanh, Thu Duc City, Ho Chi Minh City </span>
               </div>
             </div>
           </div>
@@ -91,7 +94,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-border text-center">
           <p className="text-accent text-sm">
-            © {currentYear} Orchid Haven. All rights reserved.
+            © {currentYear} Orchid Victoria. All rights reserved.
           </p>
         </div>
       </div>
