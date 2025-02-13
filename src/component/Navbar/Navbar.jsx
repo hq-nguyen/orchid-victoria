@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { FiSun, FiMoon, FiUser, FiMenu, FiX } from "react-icons/fi";
 // import { IoLanguageOutline } from "react-icons/io5";
 import { data } from "../../assets/data";
-import { Link, useLocation } from "react-router-dom"; // Import useLocation
+import { Link, useLocation } from "react-router-dom"; 
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,17 +12,16 @@ const Navbar = () => {
     });
     // const [language, setLanguage] = useState("EN");
     const [showUserMenu, setShowUserMenu] = useState(false);
-    const location = useLocation(); // Get the current location
+    const location = useLocation(); 
     const [activeItem, setActiveItem] = useState("home");
 
-
+    // Store theme in localStorage
     useEffect(() => {
         document.documentElement.classList.toggle("dark", isDark);
-        localStorage.setItem('theme', isDark ? 'dark' : 'light'); // Store theme in localStorage
+        localStorage.setItem('theme', isDark ? 'dark' : 'light'); 
     }, [isDark]);
 
     useEffect(() => {
-        // Determine active item based on the current path
         const path = location.pathname;
         if (path === "/") {
             setActiveItem("home");
@@ -35,9 +34,9 @@ const Navbar = () => {
         } else if (path === "/contact") {
             setActiveItem("contact");
         } else {
-            setActiveItem(""); // Or a default if no match
+            setActiveItem(""); 
         }
-    }, [location]); // Update when the location changes
+    }, [location]);
 
     const menuItems = [
         { name: "home", path: "/" },
@@ -71,7 +70,7 @@ const Navbar = () => {
                         {menuItems.map((item) => (
                             <Link
                                 key={item.name}
-                                to={item.path} // Use the path from the menu item
+                                to={item.path}
                                 className={`text-accent hover:text-primary dark:text-muted-foreground dark:hover:text-primary-foreground capitalize relative group ${activeItem === item.name ? "text-primary dark:text-primary-foreground" : ""
                                     }`}
                             >
