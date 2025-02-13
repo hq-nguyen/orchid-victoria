@@ -16,19 +16,29 @@ import orchid_13a from '../assets/images/orchid-13.1.jpg';
 import orchid_14a from '../assets/images/orchid-14.1.jpg';
 import orchid_15a from '../assets/images/orchid-15.1.jpg';
 import orchid_16a from '../assets/images/orchid-16.1.jpg';
-
-
+import news_1 from '../assets/images/news-1.png';
+import news_2 from '../assets/images/news-2.png';
+import news_3 from '../assets/images/news-3.png';
+import news_4 from '../assets/images/news-4.png';
+import news_5 from '../assets/images/news-5.png';
+import news_6 from '../assets/images/news-6.png';
 
 export const data = {
   logo,
   logo_brand,
+  news_1, 
+  news_2,
+  news_3,
+  news_4,
+  news_5,
+  news_6
 }
 
 export const orchids = [
   {
     "Id": "1",
     "name": "Taichung beauty",
-    "rating": 5,
+    "rating": 2.5,
     "isSpecial": true,
     "isNatural": false,
     "image": orchid_1a,
@@ -42,7 +52,7 @@ export const orchids = [
   {
     "Id": "2",
     "name": "Blc. George King 'Serendipity'",
-    "rating": 2,
+    "rating": 2.6,
     "isSpecial": false,
     "isNatural": false,
     "image": orchid_2a,
@@ -65,7 +75,7 @@ export const orchids = [
     "reviews": 7,
     "description": "Lc. Mini Purple is a charming miniature Cattleya, perfect for those with limited space.  Despite its small size, it boasts vibrant purple flowers with a sweet, captivating fragrance. This variety is known for its prolific blooming and relatively easy care, making it a great addition to any collection. It often produces multiple blooms per stem, creating a delightful display.",
     "origin": "Brazil",
-    "category": "Cattleya"
+    "category": "Dragon"
   },
   {
     "Id": "4",
@@ -135,7 +145,7 @@ export const orchids = [
     "reviews": 5,
     "description": "Lc. Love Castle is a delightful Cattleya hybrid that produces charming pink and purple flowers. This variety is known for its compact growth habit and its ability to produce multiple blooms per stem.  The flowers often display a beautiful combination of pink and purple hues, creating a captivating display.  Lc. Love Castle is a relatively easy-to-grow orchid, making it a popular choice for hobbyists. Its attractive flowers and manageable size make it a wonderful addition to any collection, especially for those who appreciate bi-colored blooms.",
     "origin": "Taiwan",
-    "category": "Cattleya"
+    "category": "Dragon"
   },
   {
     "Id": "9",
