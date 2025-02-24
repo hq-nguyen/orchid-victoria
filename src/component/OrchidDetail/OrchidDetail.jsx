@@ -16,6 +16,7 @@ const OrchidDetail = () => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const { id } = useParams(); // Get the orchid ID from the URL
+    // console.log(id);
 
     const [orchidData, setOrchidData] = useState(null);
 
@@ -44,7 +45,6 @@ const OrchidDetail = () => {
     // Filter orchids by category
     const relatedOrchids = orchids.filter(orchid => orchid.category === orchidData.category && orchid.Id !== orchidData.Id).slice(0, 4);
 
-    console.log(relatedOrchids);
     return (
         <div className="container mx-auto p-4 pt-8 pb-12 max-w-7xl">
             <div className="mb-4 w-36 p-2 mb-4 bg-rose-400 hover:bg-rose-700 dark:bg-blue-400 dark:hover:bg-blue-700 text-white rounded-lg flex items-center gap-2">
@@ -120,7 +120,7 @@ const OrchidDetail = () => {
                                 <p className="text-lg font-semibold dark:text-primary-foreground">{orchidData.reviews}</p>
                             </div>
                         </div>
-                    </div>... {/* 3st Section */}
+                    </div> {/* 3st Section */}
                     <div>
                         <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Description</h2>
                         <div className={`relative ${!isExpanded ? "max-h-12" : "max-h-full"} overflow-hidden transition-all duration-300`}>
@@ -167,16 +167,18 @@ const OrchidDetail = () => {
                 <div className="mt-8">
                     <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Related Orchids</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        {relatedOrchids.map((orchid) => (
-                            <OrchidCard key={orchid.Id}
-                                orchid={orchid}
+                        {relatedOrchids.map((orchid, index) => (
+                            <OrchidCard 
+                                key={index}
+                                id={orchid.Id}
                                 image={orchid.image}
                                 name={orchid.name}
                                 origin={orchid.origin}
                                 isSpecial={orchid.isSpecial}
                                 rating={orchid.rating}
                                 category={orchid.category}
-                                description={orchid.description} />
+                                description={orchid.description} 
+                            />
                         ))}
                     </div>
                 </div>

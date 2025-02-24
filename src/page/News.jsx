@@ -81,8 +81,8 @@ const NewsPage = () => {
                                 {new Date(article.date).toLocaleDateString()} | Source: {article.source}
                             </p>
                             <div className="flex justify-between">
-                                <a href="#" className="inline-block bg-primary-500 text-rose-500 hover:bg-primary-700 dark: text-white font-bold py-2 px-4 rounded">Read More</a> 
-                                <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">Share</button>
+                                <button className="inline-block bg-primary-500 text-rose-500 hover:bg-primary-700 dark:text-white font-bold py-2 px-4 rounded">Read More</button> 
+                                <button className="bg-rose-600 hover:bg-rose-500 dark:bg-blue-600 dark:hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">Share</button>
                             </div>
                         </div>
                     </div>

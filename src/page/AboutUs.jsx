@@ -12,7 +12,7 @@ const AboutUs = () => {
 
             <h1 className="text-3xl font-extrabold text-gray-900 dark:text-gray-100 mb-8">About Us</h1>
 
-            <div className="prose text-black dark:prose-invert max-w-none mb-8">
+            <div className="prose text-black dark:text-white max-w-none mb-8">
                 <p>Welcome to our comprehensive resource dedicated to the fascinating world of orchids! Our mission is to provide enthusiasts, researchers, and anyone curious about these exquisite flowers with a wealth of information. From the most common varieties to the rarest species, we aim to cover every aspect of orchid biology, cultivation, and conservation.</p>
 
                 <h2>Orchids Around the World</h2>

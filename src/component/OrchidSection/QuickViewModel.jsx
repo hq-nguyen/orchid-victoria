@@ -72,7 +72,6 @@ const QuickViewModel = ({ orchid, onClose }) => {
                         >
                             Close
                         </button>
-                        {/* You can add other buttons here if needed */}
                     </div>
                 </div>
             </div>
