@@ -20,7 +20,7 @@ const OrchidCard = ({ id, image, name, origin, isSpecial, rating, category, desc
 
     return (
         <>
-            <div className='w-full mb-4 bg-white dark:bg-black rounded-xl shadow-xl hover:shadow-2xl transition-all transform duration-500 overflow-hidden'>
+            <div className='w-full mb-4 bg-white dark:bg-gray-800 rounded-xl shadow-xl hover:shadow-2xl transition-all transform duration-500 overflow-hidden'>
                 <Ribbon isSpecial={isSpecial} />
                 
                 <div className='relative group'>

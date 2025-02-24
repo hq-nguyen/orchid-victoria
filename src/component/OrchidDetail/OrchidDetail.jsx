@@ -16,6 +16,7 @@ const OrchidDetail = () => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const { id } = useParams(); // Get the orchid ID from the URL
+    // console.log(id);
 
     const [orchidData, setOrchidData] = useState(null);
 
@@ -44,7 +45,6 @@ const OrchidDetail = () => {
     // Filter orchids by category
     const relatedOrchids = orchids.filter(orchid => orchid.category === orchidData.category && orchid.Id !== orchidData.Id).slice(0, 4);
 
-    console.log(relatedOrchids);
     return (
         <div className="container mx-auto p-4 pt-8 pb-12 max-w-7xl">
             <div className="mb-4 w-36 p-2 mb-4 bg-rose-400 hover:bg-rose-700 dark:bg-blue-400 dark:hover:bg-blue-700 text-white rounded-lg flex items-center gap-2">

@@ -9,6 +9,7 @@ import ScrollTop from './component/ScrollTop/ScrollTop';
 import SpecialOrchid from './page/SpecialOrchid';
 import AboutUs from './page/AboutUs';
 import NewsPage from './page/News';
+import AdminLayout from './layouts/AdminLayout';
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/special" element={<SpecialOrchid />} />
                     <Route path="/news" element={<NewsPage />} />
                     <Route path="/about-us" element={<AboutUs />} />
+                    <Route path="/admin" element={<AdminLayout />} />
                 </Routes>
             </div>
             <Footer />
