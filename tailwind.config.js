@@ -6,7 +6,7 @@ export default {
   ],
   theme: {
     extend: {
-        colors: {
+      colors: {
         primary: {
           DEFAULT: "#E11D48",
           foreground: "#FFFFFF"
@@ -46,7 +46,7 @@ export default {
           3: "#03A9F4",
           4: "#FFC107",
           5: "#8E44AD"
-          }
+        }
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"]
@@ -68,5 +68,5 @@ export default {
     },
   },
   plugins: [],
-    darkMode: "class",
+  darkMode: "class",
 };

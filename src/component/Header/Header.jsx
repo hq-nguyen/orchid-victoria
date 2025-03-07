@@ -1,24 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FiSun, FiMoon, FiUser, FiMenu, FiX } from "react-icons/fi";
 // import { IoLanguageOutline } from "react-icons/io5";
 import { data } from "../../assets/data";
-import { Link, useLocation } from "react-router-dom"; 
+import { Link, useLocation } from "react-router-dom";
 
-const Navbar = () => {
+const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isDark, setIsDark] = useState(() => { 
-        const storedTheme = localStorage.getItem('theme');
-        return storedTheme === 'dark';
+    const [isDark, setIsDark] = useState(() => {
+        const storedTheme = localStorage.getItem("theme");
+        return storedTheme === "dark";
     });
     // const [language, setLanguage] = useState("EN");
     const [showUserMenu, setShowUserMenu] = useState(false);
-    const location = useLocation(); 
+    const location = useLocation();
     const [activeItem, setActiveItem] = useState("home");
+    const userMenuRef = useRef(null);
 
     // Store theme in localStorage
     useEffect(() => {
         document.documentElement.classList.toggle("dark", isDark);
-        localStorage.setItem('theme', isDark ? 'dark' : 'light'); 
+        localStorage.setItem("theme", isDark ? "dark" : "light");
     }, [isDark]);
 
     useEffect(() => {
@@ -34,7 +35,7 @@ const Navbar = () => {
         } else if (path === "/contact") {
             setActiveItem("contact");
         } else {
-            setActiveItem(""); 
+            setActiveItem("");
         }
     }, [location]);
 
@@ -48,20 +49,16 @@ const Navbar = () => {
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const toggleTheme = () => setIsDark(!isDark);
-    const toggleUserMenu = () => setShowUserMenu(!showUserMenu);
+    // const toggleUserMenu = () => setShowUserMenu(!showUserMenu);
 
     return (
-        <div className="relative bg-card dark:bg-secondary-foreground shadow-lg sticky w-full top-0 z-50">
+        <div className="bg-card dark:bg-secondary-foreground shadow-lg sticky w-full top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     {/* Left Section */}
-                    <Link className="flex items-center" to={'/'}>
+                    <Link className="flex items-center" to={"/"}>
                         <div>
-                            <img
-                                src={data.logo_brand}
-                                alt="Logo"
-                                className="h-14 rounded-md"
-                            />
+                            <img src={data.logo_brand} alt="Logo" className="h-14 rounded-md" />
                         </div>
                     </Link>
 
@@ -89,23 +86,29 @@ const Navbar = () => {
                             onClick={toggleTheme}
                             className="p-2 rounded-full hover:bg-muted dark:hover:bg-accent transition-colors"
                         >
-                            {isDark ? <FiSun className="w-5 h-5 text-primary-foreground" /> : <FiMoon className="w-5 h-5 text-foreground" />}
+                            {isDark ? (
+                                <FiSun className="w-5 h-5 text-primary-foreground" />
+                            ) : (
+                                <FiMoon className="w-5 h-5 text-foreground" />
+                            )}
                         </button>
 
                         {/* login sign-up section */}
-                        <div className="relative">
-                            <button
-                                onClick={toggleUserMenu}
-                                className="p-2 rounded-full hover:bg-muted dark:hover:bg-accent transition-colors"
-                            >
+                        <div
+                            className="relative"
+                            onMouseEnter={() => setShowUserMenu(true)}
+                            onMouseLeave={() => setShowUserMenu(false)}
+                            ref={userMenuRef}
+                        >
+                            <div className="p-2 rounded-full hover:bg-muted dark:hover:bg-accent transition-colors">
                                 <FiUser className="w-5 h-5 text-accent dark:text-muted-foreground" />
-                            </button>
+                            </div>
                             {showUserMenu && (
-                                <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-card dark:bg-secondary-foreground ring-1 ring-black ring-opacity-5">
+                                <div className="absolute right-0 mt-0 w-32 rounded-md shadow-lg bg-card dark:bg-secondary-foreground ring-1 ring-black ring-opacity-5">
                                     <div className="py-1">
-                                        <button className="block px-4 py-2 text-sm text-foreground dark:text-primary-foreground hover:bg-muted hover:text-red-500 dark:hover:bg-accent w-full text-left">
+                                        <Link to={'/login'} className="block px-4 py-2 text-sm text-foreground dark:text-primary-foreground hover:bg-muted hover:text-red-500 dark:hover:bg-accent w-full text-left">
                                             Login
-                                        </button>
+                                        </Link>
                                         <button className="block px-4 py-2 text-sm text-foreground dark:text-primary-foreground hover:bg-muted hover:text-red-500 dark:hover:bg-accent w-full text-left">
                                             Sign Up
                                         </button>
@@ -114,7 +117,6 @@ const Navbar = () => {
                             )}
                         </div>
                     </div>
-
                     {/* Mobile menu button */}
                     <div className="md:hidden">
                         <button
@@ -124,7 +126,6 @@ const Navbar = () => {
                             {isOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
                         </button>
                     </div>
-
                 </div>
             </div>
 
@@ -140,8 +141,8 @@ const Navbar = () => {
                                     setIsOpen(false);
                                 }}
                                 className={`block px-3 py-2 rounded-md text-base w-full text-left capitalize ${activeItem === item.name
-                                    ? "bg-primary text-primary-foreground"
-                                    : "text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent"
+                                        ? "bg-primary text-primary-foreground"
+                                        : "text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent"
                                     }`}
                             >
                                 {item.name}
@@ -176,4 +177,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default Header;
