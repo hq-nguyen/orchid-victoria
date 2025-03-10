@@ -1,5 +1,5 @@
 import { orchids } from '../assets/data';
-import OrchidCard from '../component/OrchidCard/OrchidCard';
+import OrchidCard from '../components/OrchidCard/OrchidCard';
 
 const SpecialOrchid = () => {
     const specialOrchids = orchids.filter(orchid => orchid.isSpecial);

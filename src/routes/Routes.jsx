@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router-dom"
 import Home from "../page/Home"
 import MainLayout from "../layouts/MainLayout"
-import OrchidDetail from "../component/OrchidDetail/OrchidDetail"
+import OrchidDetail from "../components/OrchidDetail/OrchidDetail"
 import Contact from "../page/Contact"
 import SpecialOrchid from "../page/SpecialOrchid"
 import NewsPage from "../page/News"
@@ -9,6 +9,7 @@ import Login from "../page/Login"
 import AdminLayout from "../layouts/AdminLayout"
 import AboutUs from "../page/AboutUs"
 import ManageOrchid from "../page/Admin/ManageOrchid"
+import ProtectedRoute from "./ProtectedRoute"
 
 const Routes = () => {
     const routing = useRoutes([
@@ -48,7 +49,11 @@ const Routes = () => {
         },
         {
             path: "admin",
-            element: <AdminLayout />,
+            element: (
+                <ProtectedRoute>
+                    <AdminLayout />
+                </ProtectedRoute>
+            ),
             children:[
                 {
                     index: true,

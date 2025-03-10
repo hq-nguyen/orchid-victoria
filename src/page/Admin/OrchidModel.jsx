@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { PlusOutlined } from '@ant-design/icons';
 import uploadFile from '../../utils/upload'
-import LoadingComponent from '../../component/Loading/Loading';
+import LoadingComponent from '../../components/Loading/Loading';
 const { TextArea } = Input;
 const { Option } = Select;
 

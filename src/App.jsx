@@ -1,14 +1,17 @@
 import './App.css';
-import ScrollTop from './component/ScrollTop/ScrollTop';
+import ScrollTop from './components/ScrollTop/ScrollTop';
+import { AuthContextProvider } from './context/AuthContext';
 import Routes from './routes/Routes';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
     return (
         <>
-            <ScrollTop />
-            <Routes />
-            <Toaster />
+            <AuthContextProvider>
+                <ScrollTop />
+                <Routes />
+                <Toaster />
+            </AuthContextProvider>
         </>
     );
 }

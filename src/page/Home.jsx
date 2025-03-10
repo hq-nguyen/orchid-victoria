@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet'
-import OrchidSection from '../component/OrchidSection/OrchidSection'
+import OrchidSection from '../components/OrchidSection/OrchidSection'
 
 const Home = () => {
   return (
