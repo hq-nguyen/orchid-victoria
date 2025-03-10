@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FiSun, FiMoon, FiUser, FiMenu, FiX } from "react-icons/fi";
+import { MdLogin } from "react-icons/md";
 // import { IoLanguageOutline } from "react-icons/io5";
 import { data } from "../../assets/data";
 import { Link, useLocation } from "react-router-dom";
@@ -81,7 +82,7 @@ const Header = () => {
                     </div>
 
                     {/* Right Section */}
-                    <div className="hidden md:flex items-center space-x-6">
+                    <div className="hidden md:flex items-center space-x-2">
                         <button
                             onClick={toggleTheme}
                             className="p-2 rounded-full hover:bg-muted dark:hover:bg-accent transition-colors"
@@ -100,8 +101,8 @@ const Header = () => {
                             onMouseLeave={() => setShowUserMenu(false)}
                             ref={userMenuRef}
                         >
-                            <div className="p-2 rounded-full hover:bg-muted dark:hover:bg-accent transition-colors">
-                                <FiUser className="w-5 h-5 text-accent dark:text-muted-foreground" />
+                            <div className="p-2 rounded-full hover:bg-muted dark:hover:bg-accent transition-colors cursor-pointer">
+                                <MdLogin className="w-5 h-5  text-black dark:text-white" />
                             </div>
                             {showUserMenu && (
                                 <div className="absolute right-0 mt-0 w-32 rounded-md shadow-lg bg-card dark:bg-secondary-foreground ring-1 ring-black ring-opacity-5">
@@ -109,9 +110,9 @@ const Header = () => {
                                         <Link to={'/login'} className="block px-4 py-2 text-sm text-foreground dark:text-primary-foreground hover:bg-muted hover:text-red-500 dark:hover:bg-accent w-full text-left">
                                             Login
                                         </Link>
-                                        <button className="block px-4 py-2 text-sm text-foreground dark:text-primary-foreground hover:bg-muted hover:text-red-500 dark:hover:bg-accent w-full text-left">
-                                            Sign Up
-                                        </button>
+                                        <Link to={'/admin'} className="block px-4 py-2 text-sm text-foreground dark:text-primary-foreground hover:bg-muted hover:text-red-500 dark:hover:bg-accent w-full text-left">
+                                            Dashboard
+                                        </Link>
                                     </div>
                                 </div>
                             )}
@@ -141,8 +142,8 @@ const Header = () => {
                                     setIsOpen(false);
                                 }}
                                 className={`block px-3 py-2 rounded-md text-base w-full text-left capitalize ${activeItem === item.name
-                                        ? "bg-primary text-primary-foreground"
-                                        : "text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent"
+                                    ? "bg-primary text-primary-foreground"
+                                    : "text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent"
                                     }`}
                             >
                                 {item.name}
@@ -167,7 +168,7 @@ const Header = () => {
                                 Sign In
                             </button>
                             <button className="flex items-center px-3 py-2 rounded-md text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent w-full">
-                                Sign Up
+                                Dashboard
                             </button>
                         </div>
                     </div>

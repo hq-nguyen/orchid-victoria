@@ -21,9 +21,7 @@ function ManageOrchid() {
 
     const fetchOrchidData = async () => {
         try {
-            setLoading(true);
             const orchidData = await fetchOrchids();
-            // Check if the response is an array, or extract the array from the response
             const orchidArray = Array.isArray(orchidData) ? orchidData :
                 (orchidData.data ? orchidData.data : []);
 
@@ -83,11 +81,8 @@ function ManageOrchid() {
                 await createOrchid(orchidData);
                 message.success('Orchid created successfully');
             }
-            
-            // Close modal
+
             setModelVisible(false);
-            
-            // Refresh data
             fetchOrchidData();
         } catch (error) {
             console.error('Error saving orchid:', error);
@@ -108,7 +103,6 @@ function ManageOrchid() {
             dataIndex: 'name',
             key: 'name',
             width: 150,
-            fixed: 'left',
         },
         {
             title: 'Image',
@@ -140,13 +134,22 @@ function ManageOrchid() {
             width: 120,
         },
         {
-            title: 'Attributes',
-            key: 'attributes',
+            title: 'Special',
+            key: 'special',
             width: 150,
             render: (_, record) => (
                 <div>
-                    {record.special && <Tag color="gold">Special</Tag>}
-                    {record.natural && <Tag color="green">Natural</Tag>}
+                    {record.special ? <Tag color="gold">Rare Orchid</Tag> : <Tag color="blue">Regular Orchid</Tag>}
+                </div>
+            ),
+        },
+        {
+            title: 'Nature',
+            key: 'nature',
+            width: 150,
+            render: (_, record) => (
+                <div>
+                    {record.nature ? <Tag color="green">Wild Orchid</Tag> : <Tag color="gray">Hybrid Orchid</Tag>}
                 </div>
             ),
         },
@@ -155,7 +158,23 @@ function ManageOrchid() {
             dataIndex: 'video',
             key: 'video',
             width: 100,
-            render: (video) => video ? '✓' : '✗',
+            render: (video) => {
+                if (video) {
+                    const videoId = video?.split('v=')?.[1]?.split('&')?.[0];
+                    return (
+                        <div>
+                            <iframe
+                                width="100%"
+                                height="90"
+                                src={`https://www.youtube.com/embed/${videoId}?autoplay=0`}
+                                allowFullScreen
+                            />
+                        </div>
+                    );
+                } else {
+                    return <div>No Video</div>;
+                }
+            },
         },
         {
             title: 'Actions',
@@ -184,7 +203,7 @@ function ManageOrchid() {
         <div className='p-4 my-12 bg-white rounded-md shadow-md'>
             <div className='flex justify-between items-center mb-4'>
                 <h1 className='text-2xl text-black font-bold'>Orchid List</h1>
-                <button 
+                <button
                     className='bg-blue-500 hover:opacity-90 text-white px-4 py-2 rounded-md'
                     onClick={handleAddOrchid}
                 >
@@ -217,7 +236,7 @@ function ManageOrchid() {
                     />
                 </div>
             )}
-            
+
             <OrchidModel
                 visible={modelVisible}
                 onCancel={handleModelCancel}
