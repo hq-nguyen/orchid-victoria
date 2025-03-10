@@ -284,7 +284,6 @@ const OrchidModel = ({ visible, onCancel, onSubmit, initialValues = null, isEdit
                   onChange={handleUploadChange}
                   beforeUpload={beforeUpload}
                   onRemove={removeFile}
-                  multiple
                 >
                   {fileList.length >= 8 ? null : (
                     <div>
@@ -294,7 +293,7 @@ const OrchidModel = ({ visible, onCancel, onSubmit, initialValues = null, isEdit
                   )}
                 </Upload>
                 <div className="text-xs text-gray-500 mt-1">
-                  Upload up to 8 images. Each image must be less than 2MB.
+                  Upload only one image. Each image must be less than 2MB.
                 </div>
               </div>
 

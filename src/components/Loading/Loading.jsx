@@ -5,7 +5,7 @@ const LoadingComponent = ({ text = "Processing...", size = "large" }) => {
     <div className="flex flex-col items-center justify-center w-full h-full min-h-40 py-12">
       <div className="relative">
         {/* Animated gradient background */}
-        <div className="absolute inset-0 rounded-full blur-xl bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 opacity-30 animate-pulse" />
+        <div className="absolute inset-0 rounded-full blur-xl bg-gradient-to-r from-rose-400 via-rose-600 to-rose-800 opacity-30 animate-pulse" />
         
         {/* Main spinner */}
         <Spin size={size} />

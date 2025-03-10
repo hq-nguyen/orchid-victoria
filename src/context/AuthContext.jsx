@@ -13,7 +13,7 @@ import {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     
-    // Google login function
+    // login function
     const googleLogin = async () => {
       const provider = new GoogleAuthProvider();
       try {
@@ -25,7 +25,7 @@ import {
       }
     };
     
-    // Logout function
+    // logout function
     const logout = async () => {
       try {
         await signOut(auth);
@@ -35,7 +35,7 @@ import {
       }
     };
     
-    // Check if user is authenticated on mount and when auth state changes
+    // Check if user is authenticated 
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
