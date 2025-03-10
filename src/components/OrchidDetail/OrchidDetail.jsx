@@ -4,46 +4,75 @@ import { FaHeart, FaChevronDown, FaChevronUp, FaLeaf } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link, useParams } from 'react-router-dom';
-import { orchids } from '../../assets/data'; // Import the orchid data
 import StarRating from "../../utils/StarRating";
 import Ribbon from "../Ribbon/Ribbon";
 import { useState, useEffect } from "react";
-
-// Import OrchidCard component
 import OrchidCard from "../OrchidCard/OrchidCard";
+import LoadingComponent from "../Loading/Loading";
+import { fetchOrchids, fetchOrchidById } from "../../service/api.orchid";
 
 const OrchidDetail = () => {
     const [isExpanded, setIsExpanded] = useState(false);
-
-    const { id } = useParams(); // Get the orchid ID from the URL
-    // console.log(id);
-
+    const { id } = useParams();
     const [orchidData, setOrchidData] = useState(null);
-
-    const [isLiked, setIsLiked] = useState(() => {
-        const storedLikeStatus = localStorage.getItem(`orchid-${id}-liked`);
-        return storedLikeStatus === 'true';
-    });
-    useEffect(() => {
-        localStorage.setItem(`orchid-${id}-liked`, isLiked.toString()); // Convert boolean to string
-    }, [isLiked, id])
-
-    const toggleLike = () => {
-        setIsLiked(!isLiked);
-    };
+    const [orchids, setOrchids] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [relatedOrchids, setRelatedOrchids] = useState([]);
 
     useEffect(() => {
-        // Find the orchid in the data that matches the ID from the URL
-        const foundOrchid = orchids.find((orchid) => orchid.Id === id);
-        setOrchidData(foundOrchid);
+        const getOrchids = async () => {
+            try {
+                setLoading(true);
+                
+                // First, fetch the specific orchid using the dedicated API
+                const currentOrchid = await fetchOrchidById(id);
+                setOrchidData(currentOrchid);
+                
+                // Then fetch all orchids for related items
+                const allOrchids = await fetchOrchids();
+                setOrchids(allOrchids);
+                
+                // Filter related orchids by category
+                if (currentOrchid && currentOrchid.category) {
+                    const related = allOrchids.filter(
+                        orchid => orchid.category === currentOrchid.category 
+                                 && orchid.id.toString() !== id.toString()
+                    ).slice(0, 4);
+                    setRelatedOrchids(related);
+                }
+                
+            } catch (error) {
+                console.error('Error fetching orchid details: ', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        
+        if (id) {
+            getOrchids();
+        }
     }, [id]);
 
-    if (!orchidData) {
-        return <div>Loading...</div>; // Or display an error message
+    // Show loading while data is being fetched
+    if (loading) {
+        return <LoadingComponent text="Loading orchid details..." />;
     }
-
-    // Filter orchids by category
-    const relatedOrchids = orchids.filter(orchid => orchid.category === orchidData.category && orchid.Id !== orchidData.Id).slice(0, 4);
+    
+    // Show error if orchid not found
+    if (!orchidData) {
+        return (
+            <div className="container mx-auto p-4 text-center">
+                <div className="mb-4 w-36 p-2 mb-4 bg-rose-400 hover:bg-rose-700 dark:bg-blue-400 dark:hover:bg-blue-700 text-white rounded-lg flex items-center gap-2">
+                    <FaArrowLeft className="inline-block" />
+                    <Link to={'/'}>Back to home</Link>
+                </div>
+                <div className="bg-red-100 dark:bg-red-900 p-4 rounded-lg">
+                    <h2 className="text-xl text-red-700 dark:text-red-300">Orchid not found</h2>
+                    <p>The orchid you're looking for doesn't exist or has been removed.</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="container mx-auto p-4 pt-8 pb-12 max-w-7xl">
@@ -56,7 +85,7 @@ const OrchidDetail = () => {
                 <div className="lg:w-1/2">
                     <div className="relative max-h-[632px] w-full overflow-hidden">
                         <Ribbon
-                            isSpecial={orchidData.isSpecial}
+                            isSpecial={orchidData.special}
                             ribbonWidth="w-[240px]"
                             ribbonTop="top-[40px]"
                             ribbonLeft="-left-[52px]"
@@ -74,7 +103,6 @@ const OrchidDetail = () => {
                         />
                     </div>
                 </div>
-
 
                 {/* Information */}
                 <div className="lg:w-1/2 p-6 flex flex-col gap-6">
@@ -98,13 +126,12 @@ const OrchidDetail = () => {
                                 <p className="text-sm font-medium text-accent dark:text-muted-foreground flex items-center"><FaTag className="text-primary mr-4" />Category</p>
                                 <p className="text-lg font-semibold dark:text-primary-foreground">{orchidData.category}</p>
                             </div>
-
                         </div>
                         <div className="p-4 rounded-lg shadow-md transition-colors duration-300 flex items-center justify-between">
                             <div>
                                 <p className="text-sm font-medium text-accent dark:text-muted-foreground flex items-center"> <MdOutlineEmojiNature className="text-primary mr-4" /> Natural</p>
                                 <p className="text-lg font-semibold dark:text-primary-foreground">
-                                    {orchidData.isNatural ? "Wild Orchid" : "Cultivated"}
+                                    {orchidData.nature ? "Wild Orchid" : "Hybrid Orchid"}
                                 </p>
                             </div>
                         </div>
@@ -116,11 +143,21 @@ const OrchidDetail = () => {
                         </div>
                         <div className="p-4 rounded-lg shadow-md transition-colors duration-300 flex items-center justify-between">
                             <div>
-                                <p className="text-sm font-medium text-accent dark:text-muted-foreground flex items-center"><FaUsers className="text-primary mr-4" />Reviewers</p>
-                                <p className="text-lg font-semibold dark:text-primary-foreground">{orchidData.reviews}</p>
+                                <p className="text-sm font-medium text-accent dark:text-muted-foreground flex items-center"><FaLeaf className="text-primary mr-4" />Special</p>
+                                {orchidData.special ? (
+                                    <div className="flex items-center bg-yellow-500 px-2 py-1 rounded-lg text-sm mt-2">
+                                        <span className="font-medium">Rare Orchid</span>
+                                    </div>
+                                ) : (
+                                    <div className="flex items-center bg-green-500 px-2 py-1 rounded-lg text-sm mt-2">
+                                        <span className="font-medium">Regular Orchid</span>
+                                    </div>
+                                )}
                             </div>
                         </div>
-                    </div> {/* 3st Section */}
+                    </div> 
+                    
+                    {/* 3rd Section */}
                     <div>
                         <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Description</h2>
                         <div className={`relative ${!isExpanded ? "max-h-12" : "max-h-full"} overflow-hidden transition-all duration-300`}>
@@ -141,24 +178,6 @@ const OrchidDetail = () => {
                             )}
                         </button>
                     </div>
-
-                    {/* Love Elements */}
-                    <div className="flex items-center justify-between mt-4">
-                        <button
-                            onClick={toggleLike}
-                            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-rose-200 dark:bg-blue-200 hover:bg-rose-600 transition-colors"
-                        >
-                            <FaHeart className={isLiked ? "text-rose-500" : "text-gray-400"} />
-                            <span className="text-black">{orchidData.numberOfLike + (isLiked ? 1 : 0)}</span>
-                        </button>
-
-                        {orchidData.isSpecial && (
-                            <div className="flex items-center gap-2 text-white-600 bg-yellow-600 px-2 py-2 rounded-lg">
-                                <FaLeaf />
-                                <span className="font-medium">Special Orchid</span>
-                            </div>
-                        )}
-                    </div>
                 </div>
             </div>
 
@@ -168,16 +187,16 @@ const OrchidDetail = () => {
                     <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Related Orchids</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {relatedOrchids.map((orchid, index) => (
-                            <OrchidCard 
+                            <OrchidCard
                                 key={index}
-                                id={orchid.Id}
+                                id={orchid.id}
                                 image={orchid.image}
                                 name={orchid.name}
                                 origin={orchid.origin}
-                                isSpecial={orchid.isSpecial}
+                                special={orchid.special}
                                 rating={orchid.rating}
                                 category={orchid.category}
-                                description={orchid.description} 
+                                description={orchid.description}
                             />
                         ))}
                     </div>

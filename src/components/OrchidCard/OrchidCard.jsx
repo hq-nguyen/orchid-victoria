@@ -7,7 +7,7 @@ import QuickViewModel from '../OrchidSection/QuickViewModel';
 import StarRating from '../../utils/StarRating';
 import Ribbon from '../Ribbon/Ribbon';
 
-const OrchidCard = ({ id, image, name, origin, isSpecial, rating, category, description }) => {
+const OrchidCard = ({ id, image, name, origin, special, rating, category, description }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
@@ -21,7 +21,7 @@ const OrchidCard = ({ id, image, name, origin, isSpecial, rating, category, desc
     return (
         <>
             <div className='w-full mb-4 bg-white dark:bg-gray-800 rounded-xl shadow-xl hover:shadow-2xl transition-all transform duration-500 overflow-hidden'>
-                <Ribbon isSpecial={isSpecial} />
+                <Ribbon isSpecial={special} />
                 
                 <div className='relative group'>
                     <img
@@ -74,7 +74,7 @@ OrchidCard.propTypes = {
     category: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    isSpecial: PropTypes.bool.isRequired,
+    special: PropTypes.bool.isRequired,
 };
 
 export default OrchidCard;

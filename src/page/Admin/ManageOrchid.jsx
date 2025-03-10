@@ -237,13 +237,15 @@ function ManageOrchid() {
                 </div>
             )}
 
-            <OrchidModel
-                visible={modelVisible}
-                onCancel={handleModelCancel}
-                onSubmit={handleModelSubmit}
-                initialValues={editingOrchid}
-                isEdit={isEditing}
-            />
+            {modelVisible && (
+                <OrchidModel
+                    visible={true}
+                    onCancel={handleModelCancel}
+                    onSubmit={handleModelSubmit}
+                    initialValues={editingOrchid}
+                    isEdit={isEditing}
+                />
+            )}
         </div>
     )
 }
