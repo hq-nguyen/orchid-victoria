@@ -1,6 +1,6 @@
-import { FaTag, FaPalette, FaUsers } from "react-icons/fa";
+import { FaTag, FaPalette, FaUsers, FaPlay } from "react-icons/fa";
 import { MdOutlineEmojiNature } from "react-icons/md";
-import { FaHeart, FaChevronDown, FaChevronUp, FaLeaf } from "react-icons/fa";
+import { FaChevronDown, FaChevronUp, FaLeaf } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link, useParams } from 'react-router-dom';
@@ -13,6 +13,7 @@ import { fetchOrchids, fetchOrchidById } from "../../service/api.orchid";
 
 const OrchidDetail = () => {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [showVideoModal, setShowVideoModal] = useState(false);
     const { id } = useParams();
     const [orchidData, setOrchidData] = useState(null);
     const [orchids, setOrchids] = useState([]);
@@ -23,41 +24,47 @@ const OrchidDetail = () => {
         const getOrchids = async () => {
             try {
                 setLoading(true);
-                
-                // First, fetch the specific orchid using the dedicated API
+
                 const currentOrchid = await fetchOrchidById(id);
                 setOrchidData(currentOrchid);
-                
-                // Then fetch all orchids for related items
+
                 const allOrchids = await fetchOrchids();
                 setOrchids(allOrchids);
-                
+
                 // Filter related orchids by category
                 if (currentOrchid && currentOrchid.category) {
                     const related = allOrchids.filter(
-                        orchid => orchid.category === currentOrchid.category 
-                                 && orchid.id.toString() !== id.toString()
+                        orchid => orchid.category === currentOrchid.category
+                            && orchid.id.toString() !== id.toString()
                     ).slice(0, 4);
                     setRelatedOrchids(related);
                 }
-                
+
             } catch (error) {
                 console.error('Error fetching orchid details: ', error);
             } finally {
                 setLoading(false);
             }
         };
-        
+
         if (id) {
             getOrchids();
         }
     }, [id]);
 
+    // Function to extract YouTube video ID from URL
+    const getYoutubeVideoId = (url) => {
+        if (!url) return null;
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    };
+
     // Show loading while data is being fetched
     if (loading) {
         return <LoadingComponent text="Loading orchid details..." />;
     }
-    
+
     // Show error if orchid not found
     if (!orchidData) {
         return (
@@ -68,19 +75,22 @@ const OrchidDetail = () => {
                 </div>
                 <div className="bg-red-100 dark:bg-red-900 p-4 rounded-lg">
                     <h2 className="text-xl text-red-700 dark:text-red-300">Orchid not found</h2>
-                    <p>The orchid you're looking for doesn't exist or has been removed.</p>
+                    <p>The orchid you are looking for does not exist or has been removed.</p>
                 </div>
             </div>
         );
     }
 
+    // YouTube video ID
+    const youtubeVideoId = getYoutubeVideoId(orchidData.video);
+
     return (
-        <div className="container mx-auto p-4 pt-8 pb-12 max-w-7xl">
+        <div className="container mx-auto p-4 pt-8 pb-12 max-w-7xl relative">
             <div className="mb-4 w-36 p-2 mb-4 bg-rose-400 hover:bg-rose-700 dark:bg-blue-400 dark:hover:bg-blue-700 text-white rounded-lg flex items-center gap-2">
                 <FaArrowLeft className="inline-block" />
                 <Link to={'/'}>Back to home</Link>
             </div>
-            <div className="flex flex-col lg:flex-row gap-8 bg-white dark:bg-gray-900  overflow-hidden">
+            <div className="flex flex-col lg:flex-row gap-8 bg-white dark:bg-gray-900 overflow-hidden">
                 {/* Image Only*/}
                 <div className="lg:w-1/2">
                     <div className="relative max-h-[632px] w-full overflow-hidden">
@@ -101,7 +111,18 @@ const OrchidDetail = () => {
                                 e.target.src = "https://images.unsplash.com/photo-1610397648930-477b8c7f0943";
                             }}
                         />
+                        {/* Video Button - Fixed in the bottom right corner */}
+                        {orchidData.video && (
+                            <button
+                                onClick={() => setShowVideoModal(true)}
+                                className="absolute bottom-6 right-6 w-40 h-10 rounded-full bg-rose-600 dark:bg-blue-600 text-white flex items-center justify-center shadow-lg hover:bg-rose-700 dark:hover:bg-blue-700 transition-colors z-50"
+                                title="Watch Video"
+                            >
+                                <FaPlay className="text-xl mr-2" /> <span>Watch Video</span>
+                            </button>
+                        )}
                     </div>
+
                 </div>
 
                 {/* Information */}
@@ -155,8 +176,8 @@ const OrchidDetail = () => {
                                 )}
                             </div>
                         </div>
-                    </div> 
-                    
+                    </div>
+
                     {/* 3rd Section */}
                     <div>
                         <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">Description</h2>
@@ -199,6 +220,42 @@ const OrchidDetail = () => {
                                 description={orchid.description}
                             />
                         ))}
+                    </div>
+                </div>
+            )}
+
+
+
+            {/* Video Modal */}
+            {showVideoModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white dark:bg-gray-900 rounded-lg p-4 w-full max-w-4xl">
+                        <div className="flex justify-between items-center mb-4">
+                            <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                                {orchidData.name} - Video
+                            </h3>
+                            <button
+                                onClick={() => setShowVideoModal(false)}
+                                className="text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white"
+                            >
+                                ✕
+                            </button>
+                        </div>
+                        <div className="relative pb-[56.25%] h-0 overflow-hidden">
+                            {youtubeVideoId ? (
+                                <iframe
+                                    src={`https://www.youtube.com/embed/${youtubeVideoId}`}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    className="absolute top-0 left-0 w-full h-full"
+                                    title={`${orchidData.name} video`}
+                                ></iframe>
+                            ) : (
+                                <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-800">
+                                    <p className="text-gray-600 dark:text-gray-300">Invalid video URL</p>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             )}
