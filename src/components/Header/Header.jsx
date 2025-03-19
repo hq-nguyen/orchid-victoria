@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, use } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FiSun, FiMoon, FiMenu, FiX, FiSearch } from "react-icons/fi";
 import { MdLogin, MdLogout } from "react-icons/md";
 import { data } from "../../assets/data";
@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import useOrchidStore from "../../store/OrchidStore";
 import LoadingComponent from "../Loading/Loading";
+import { isUserAdmin } from "../../service/auth";
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,10 +20,8 @@ const Header = () => {
     const userMenuRef = useRef(null);
     const navigate = useNavigate();
 
-
     // Get auth context
-    const auth = UserAuth();
-    const { user, googleLogin, logout } = auth || {};
+    const { currentUser, login, logout } = UserAuth();
     // Get orchid state
     const { loading, searchOrchidsAction, searchQuery } = useOrchidStore();
     const [searchText, setSearchText] = useState(searchQuery); // Initialize with searchQuery
@@ -62,12 +61,12 @@ const Header = () => {
         } else if (path === "/contact") {
             setActiveItem("contact");
             searchOrchidsAction('');
-        } else if (path != "/")  {
+        } else if (path !== "/") {
             searchOrchidsAction('');
         } else {
             setActiveItem("");
-        } 
-    }, [location]);
+        }
+    }, [location, searchOrchidsAction]);
 
     const menuItems = [
         { name: "home", path: "/" },
@@ -79,7 +78,7 @@ const Header = () => {
 
     const handleLogin = async () => {
         try {
-            await googleLogin();
+            await login();
             navigate('/admin');
             setShowUserMenu(false);
         } catch (error) {
@@ -188,17 +187,17 @@ const Header = () => {
                             ref={userMenuRef}
                         >
                             <div className="p-2 rounded-full hover:bg-muted dark:hover:bg-accent transition-colors cursor-pointer">
-                                {user ? (
+                                {currentUser ? (
                                     <div className="flex items-center">
-                                        {user.photoURL ? (
+                                        {currentUser.photoURL ? (
                                             <img
-                                                src={user.photoURL}
+                                                src={currentUser.photoURL}
                                                 alt="Profile"
                                                 className="w-6 h-6 rounded-full"
                                             />
                                         ) : (
                                             <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center">
-                                                {user.displayName ? user.displayName[0].toUpperCase() : 'U'}
+                                                {currentUser.displayName ? currentUser.displayName[0].toUpperCase() : 'U'}
                                             </div>
                                         )}
                                     </div>
@@ -209,14 +208,16 @@ const Header = () => {
                             {showUserMenu && (
                                 <div className="absolute right-0 mt-0 w-40 rounded-md shadow-lg bg-card dark:bg-secondary-foreground ring-1 ring-black ring-opacity-5 z-50">
                                     <div className="py-1">
-                                        {user ? (
+                                        {currentUser ? (
                                             <>
                                                 <div className="block px-4 py-2 text-sm text-foreground dark:text-primary-foreground border-b">
-                                                    {user.displayName || user.email}
+                                                    {currentUser.displayName || currentUser.email}
                                                 </div>
-                                                <Link to={'/admin'} className="block px-4 py-2 text-sm text-foreground dark:text-primary-foreground hover:bg-muted hover:text-red-500 dark:hover:bg-accent w-full text-left">
-                                                    Dashboard
-                                                </Link>
+                                                {currentUser.isAdmin && (
+                                                    <Link to={'/admin'} className="block px-4 py-2 text-sm text-foreground dark:text-primary-foreground hover:bg-muted hover:text-red-500 dark:hover:bg-accent w-full text-left">
+                                                        Dashboard
+                                                    </Link>
+                                                )}
                                                 <button
                                                     onClick={handleLogout}
                                                     className="flex items-center px-4 py-2 text-sm text-foreground dark:text-primary-foreground hover:bg-muted hover:text-red-500 dark:hover:bg-accent w-full text-left"
@@ -241,24 +242,6 @@ const Header = () => {
 
                     {/* Mobile menu button */}
                     <div className="md:hidden">
-                        {/* <div className="px-2 py-3">
-                            <form onSubmit={handleSearchSubmit} className="relative">
-                                <input
-                                    type="text"
-                                    placeholder="Search orchids..."
-                                    value={searchText}
-                                    onChange={(e) => setSearchText(e.target.value)}
-                                    className="w-full py-1.5 pl-3 pr-10 rounded-md border border-border dark:border-accent bg-background dark:bg-accent/30 focus:outline-none focus:ring-2 focus:ring-primary"
-                                />
-                                <button
-                                    type="submit"
-                                    className="absolute right-0 top-0 mr-2 mt-2 text-accent hover:text-primary dark:text-primary-foreground"
-                                >
-                                    <FiSearch />
-                                </button>
-                            </form>
-                        </div> */}
-
                         <button
                             onClick={toggleMenu}
                             className="p-2 rounded-md text-accent hover:text-primary dark:text-muted-foreground dark:hover:text-primary-foreground"
@@ -298,15 +281,17 @@ const Header = () => {
                                 {isDark ? "Light Mode" : "Dark Mode"}
                             </button>
 
-                            {user ? (
+                            {currentUser ? (
                                 <>
-                                    <Link
-                                        to="/admin"
-                                        className="flex items-center px-3 py-2 rounded-md text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent w-full"
-                                        onClick={() => setIsOpen(false)}
-                                    >
-                                        Dashboard
-                                    </Link>
+                                    {currentUser.isAdmin && (
+                                        <Link
+                                            to="/admin"
+                                            className="flex items-center px-3 py-2 rounded-md text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent w-full"
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            Dashboard
+                                        </Link>
+                                    )}
                                     <button
                                         onClick={() => {
                                             handleLogout();
