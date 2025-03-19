@@ -1,4 +1,3 @@
-// OrchidSection.jsx with AOS integration
 import { useEffect, useState } from 'react';
 import { fetchOrchids } from '../../service/api.orchid';
 import OrchidCard from '../OrchidCard/OrchidCard';
@@ -15,8 +14,8 @@ const OrchidSection = () => {
   useEffect(() => {
     AOS.init({
       duration: 800,
-      once: false,
-      mirror: true,
+      once: true, // Change from false to true
+      mirror: false, // Change from true to false
     });
 
     const getOrchids = async () => {

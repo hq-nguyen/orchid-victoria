@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CiLocationOn } from "react-icons/ci";
 import { FaArrowRight } from "react-icons/fa";
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import QuickViewModel from '../OrchidSection/QuickViewModel'; 
 import StarRating from '../../utils/StarRating';
@@ -46,7 +45,7 @@ const OrchidCard = ({ id, image, name, origin, special, rating, category, descri
                     </Link>
                     <p className="flex items-center text-xs font-semibold text-gray-600 dark:text-white"><CiLocationOn className='mr-2' /> {origin}</p>
                     <div className="flex items-center mb-2">
-                        {/* star - hardcode */}
+                        {/* star rating */}
                         <div className="flex items-center mt-2.5 mb-2">
                             <StarRating rating={rating} />
                         </div>
@@ -60,21 +59,20 @@ const OrchidCard = ({ id, image, name, origin, special, rating, category, descri
             </div>
 
             {isModalOpen && (
-                <QuickViewModel orchid={{ id, image, name, origin, category, description }} onClose={closeModal} />
+                <QuickViewModel 
+                    orchid={{ 
+                        id, 
+                        image, 
+                        name, 
+                        origin, 
+                        category, 
+                        description 
+                    }} 
+                    onClose={closeModal} 
+                />
             )}
         </>
     );
-};
-
-OrchidCard.propTypes = {
-    id: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    origin: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    special: PropTypes.bool.isRequired,
 };
 
 export default OrchidCard;
