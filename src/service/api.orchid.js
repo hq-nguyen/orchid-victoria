@@ -54,8 +54,10 @@ export const fetchOrchidsWithCategories = async () => {
 };
 
 
-export const fetchOrchidsByCategory = (categoryId) =>
-  fetchData(`/orchid?categoryId=${categoryId}`);
+export const fetchOrchidsByCategory = (categoryId) => {
+  return fetchData(`/orchid?categoryId=${categoryId}`);
+}
+  
 
 export const searchOrchids = (query) =>
   fetchData(`/orchid?q=${query}`);
