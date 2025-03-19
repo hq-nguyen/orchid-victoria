@@ -2,7 +2,7 @@ import { Modal, Input, Select, Switch, InputNumber, Button, Upload, message } fr
 import { useState, useEffect } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, StarFilled, StarOutlined } from '@ant-design/icons';
 import uploadFile from '../../utils/upload'
 import LoadingComponent from '../../components/Loading/Loading';
 const { TextArea } = Input;
@@ -24,6 +24,31 @@ const OrchidSchema = Yup.object().shape({
   origin: Yup.string(),
   video: Yup.string().url('Must be a valid URL'),
 });
+
+// Star Rating Component
+const StarRating = ({ value, onChange }) => {
+  const [hoverRating, setHoverRating] = useState(0);
+  
+  return (
+    <div className="flex">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <div 
+          key={star} 
+          className="cursor-pointer px-1"
+          onClick={() => onChange(star)}
+          onMouseEnter={() => setHoverRating(star)}
+          onMouseLeave={() => setHoverRating(0)}
+        >
+          {star <= (hoverRating || value) ? (
+            <StarFilled className="text-rose-500 text-xl" />
+          ) : (
+            <StarFilled className="text-gray-300 text-xl" />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const OrchidModel = ({ visible, onCancel, onSubmit, initialValues = null, isEdit = false }) => {
   const [fileList, setFileList] = useState([]);
@@ -214,14 +239,12 @@ const OrchidModel = ({ visible, onCancel, onSubmit, initialValues = null, isEdit
               <div className="flex gap-4 mb-4">
                 <div className="flex-1">
                   <label className="block text-sm font-medium mb-1">Rating</label>
-                  <InputNumber
-                    name="rating"
-                    min={0}
-                    max={100}
-                    value={values.rating}
-                    onChange={(value) => setFieldValue('rating', value)}
-                    className="w-full"
-                  />
+                  <div className="flex items-center">
+                    <StarRating
+                      value={values.rating}
+                      onChange={(value) => setFieldValue('rating', value)}
+                    />
+                  </div>
                   {touched.rating && errors.rating && (
                     <div className="text-red-500 text-xs mt-1">{errors.rating}</div>
                   )}

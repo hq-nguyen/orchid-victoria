@@ -115,7 +115,7 @@ const OrchidDetail = () => {
                         {orchidData.video && (
                             <button
                                 onClick={() => setShowVideoModal(true)}
-                                className="absolute bottom-6 right-6 w-40 h-10 rounded-full bg-rose-600 dark:bg-blue-600 text-white flex items-center justify-center shadow-lg hover:bg-rose-700 dark:hover:bg-blue-700 transition-colors z-50"
+                                className="absolute bottom-6 right-6 w-40 h-10 rounded-full bg-rose-600 dark:bg-blue-600 text-white flex items-center justify-center shadow-lg hover:bg-rose-700 dark:hover:bg-blue-700 transition-colors z-20"
                                 title="Watch Video"
                             >
                                 <FaPlay className="text-xl mr-2" /> <span>Watch Video</span>
