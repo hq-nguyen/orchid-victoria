@@ -11,6 +11,7 @@ import AboutUs from "../page/AboutUs"
 import ManageOrchid from "../page/Admin/ManageOrchid"
 import ProtectedRoute from "./ProtectedRoute"
 import ManageCategory from "../page/Admin/ManageCategory"
+import OrchidSection from "../components/OrchidSection/OrchidSection"
 
 const Routes = () => {
     const routing = useRoutes([
@@ -21,6 +22,10 @@ const Routes = () => {
                 {
                     index: true,
                     element: <Home />
+                },
+                {
+                    path: "collections",
+                    element: <OrchidSection />
                 },
                 {
                     path: "orchid/:id",

@@ -7,7 +7,7 @@ const Footer = () => {
   const navigation = [
     { name: "Home", path: "/" },
     { name: "About Orchids", path: "/about-us" },
-    { name: "Species Orchid", path: "/special" },
+    { name: "Collections", path: "/collections" },
     { name: "News", path: "/news" },
     { name: "Contact", path: "/contact" },
   ];

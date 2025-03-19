@@ -30,7 +30,8 @@ const Header = () => {
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         searchOrchidsAction(searchText);
-        navigate(`/?q=${searchText}`);
+        setActiveItem("collections");
+        navigate(`/collections/?q=${searchText}`);
     };
 
     useEffect(() => {
@@ -49,15 +50,15 @@ const Header = () => {
         const path = location.pathname;
         if (path === "/") {
             setActiveItem("home");
+            searchOrchidsAction('');
         } else if (path === "/about-us") {
             setActiveItem("about");
             searchOrchidsAction('');
         } else if (path === "/news") {
             setActiveItem("news");
             searchOrchidsAction('');
-        } else if (path === "/special") {
-            setActiveItem("special");
-            searchOrchidsAction('');
+        } else if (path === "/collections") {
+            setActiveItem("collections");
         } else if (path === "/contact") {
             setActiveItem("contact");
             searchOrchidsAction('');
@@ -70,7 +71,7 @@ const Header = () => {
 
     const menuItems = [
         { name: "home", path: "/" },
-        { name: "special", path: "/special" },
+        { name: "collections", path: "/collections" },
         { name: "news", path: "/news" },
         { name: "about", path: "/about-us" },
         { name: "contact", path: "/contact" },

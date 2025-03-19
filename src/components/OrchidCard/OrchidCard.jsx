@@ -54,7 +54,7 @@ const OrchidCard = ({ id, image, name, origin, special, rating, description, cat
 
                 <div className='relative group'>
                     <img
-                        className='w-full h-80 object-cover rounded-t-md transition-transform duration-500 cursor-pointer group-hover:scale-105'
+                        className='w-full h-60 object-cover rounded-t-md transition-transform duration-500 cursor-pointer group-hover:scale-105'
                         src={image}
                         alt={name}
                         onClick={openModal}

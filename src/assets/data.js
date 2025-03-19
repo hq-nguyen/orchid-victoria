@@ -22,6 +22,8 @@ import news_3 from '../assets/images/news-3.png';
 import news_4 from '../assets/images/news-4.png';
 import news_5 from '../assets/images/news-5.png';
 import news_6 from '../assets/images/news-6.png';
+import background from '../assets/images/R.jpg'
+import garden from '../assets/images/garden.jpg'
 
 export const data = {
   logo,
@@ -32,7 +34,9 @@ export const data = {
   news_4,
   news_5,
   news_6,
-  orchid_1a
+  orchid_1a,
+  background,
+  garden
 }
 
 export const orchids = [
