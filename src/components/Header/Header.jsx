@@ -19,18 +19,26 @@ const Header = () => {
     const userMenuRef = useRef(null);
     const navigate = useNavigate();
 
+
     // Get auth context
     const auth = UserAuth();
     const { user, googleLogin, logout } = auth || {};
     // Get orchid state
-    const { loading, setSearchQuery } = useOrchidStore();
-    const [searchText, setSearchText] = useState('');
+    const { loading, searchOrchidsAction, searchQuery } = useOrchidStore();
+    const [searchText, setSearchText] = useState(searchQuery); // Initialize with searchQuery
+
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        setSearchQuery(searchText);
-        navigate('/');
-    }
+        searchOrchidsAction(searchText);
+        navigate(`/?q=${searchText}`);
+    };
 
+    useEffect(() => {
+        // Keep searchText in sync with searchQuery
+        if (searchQuery !== searchText) {
+            setSearchText(searchQuery);
+        }
+    }, [searchQuery]);
 
     useEffect(() => {
         document.documentElement.classList.toggle("dark", isDark);
@@ -43,15 +51,21 @@ const Header = () => {
             setActiveItem("home");
         } else if (path === "/about-us") {
             setActiveItem("about");
+            searchOrchidsAction('');
         } else if (path === "/news") {
             setActiveItem("news");
+            searchOrchidsAction('');
         } else if (path === "/special") {
             setActiveItem("special");
+            searchOrchidsAction('');
         } else if (path === "/contact") {
             setActiveItem("contact");
+            searchOrchidsAction('');
+        } else if (path != "/")  {
+            searchOrchidsAction('');
         } else {
             setActiveItem("");
-        }
+        } 
     }, [location]);
 
     const menuItems = [
@@ -101,7 +115,7 @@ const Header = () => {
     }, []);
 
     if (loading) {
-        <LoadingComponent text="Waiting for searching..." />;
+        return <LoadingComponent text="Waiting for searching..." />;
     }
 
     return (
@@ -304,16 +318,15 @@ const Header = () => {
                                     </button>
                                 </>
                             ) : (
-                                <button
-                                    onClick={() => {
-                                        handleLogin();
-                                        setIsOpen(false);
-                                    }}
-                                    className="flex items-center px-3 py-2 rounded-md text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent w-full"
-                                >
-                                    <MdLogin className="w-5 h-5 mr-2" />
-                                    Login with Google
-                                </button>
+                                <>
+                                    <button
+                                        onClick={handleLogin}
+                                        className="flex items-center px-3 py-2 rounded-md text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent w-full"
+                                    >
+                                        <MdLogin className="w-5 h-5 mr-2" />
+                                        Login
+                                    </button>
+                                </>
                             )}
                         </div>
                     </div>
