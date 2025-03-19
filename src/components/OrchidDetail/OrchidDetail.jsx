@@ -1,4 +1,4 @@
-import { FaTag, FaPalette, FaUsers, FaPlay } from "react-icons/fa";
+import { FaTag, FaPalette, FaPlay } from "react-icons/fa";
 import { MdOutlineEmojiNature } from "react-icons/md";
 import { FaChevronDown, FaChevronUp, FaLeaf } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
@@ -9,7 +9,7 @@ import Ribbon from "../Ribbon/Ribbon";
 import { useState, useEffect } from "react";
 import OrchidCard from "../OrchidCard/OrchidCard";
 import LoadingComponent from "../Loading/Loading";
-import { fetchOrchids, fetchOrchidById } from "../../service/api.orchid";
+import { fetchOrchidsWithCategory, fetchOrchidsWithCategories } from "../../service/api.orchid";
 
 const OrchidDetail = () => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -25,17 +25,20 @@ const OrchidDetail = () => {
             try {
                 setLoading(true);
 
-                const currentOrchid = await fetchOrchidById(id);
+                const currentOrchid = await fetchOrchidsWithCategory(id);
                 setOrchidData(currentOrchid);
 
-                const allOrchids = await fetchOrchids();
+                const allOrchids = await fetchOrchidsWithCategories();
                 setOrchids(allOrchids);
 
-                // Filter related orchids by category
-                if (currentOrchid && currentOrchid.category) {
+                // Fix: Filter related orchids by categoryId instead of category object
+                if (currentOrchid && currentOrchid.categoryId) {
                     const related = allOrchids.filter(
-                        orchid => orchid.category === currentOrchid.category
-                            && orchid.id.toString() !== id.toString()
+                        orchid =>
+                            // Match by categoryId (more reliable)
+                            orchid.categoryId === currentOrchid.categoryId &&
+                            // Ensure we don't include the current orchid
+                            orchid.id.toString() !== id.toString()
                     ).slice(0, 4);
                     setRelatedOrchids(related);
                 }
@@ -145,7 +148,11 @@ const OrchidDetail = () => {
                         <div className="p-4 rounded-lg shadow-md transition-colors duration-300 flex items-center justify-between">
                             <div>
                                 <p className="text-sm font-medium text-accent dark:text-muted-foreground flex items-center"><FaTag className="text-primary mr-4" />Category</p>
-                                <p className="text-lg font-semibold dark:text-primary-foreground">{orchidData.category}</p>
+                                <p className="text-lg font-semibold dark:text-primary-foreground">
+                                    {orchidData.category && typeof orchidData.category === 'object' && orchidData.category.name
+                                        ? orchidData.category.name
+                                        : orchidData.categoryName || "Unknown"}
+                                </p>
                             </div>
                         </div>
                         <div className="p-4 rounded-lg shadow-md transition-colors duration-300 flex items-center justify-between">

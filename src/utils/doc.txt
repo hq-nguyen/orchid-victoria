@@ -1,20 +1,16 @@
 [
   {
-    "name": "Normal test ",
+    "name": "Selenium",
     "rating": 4,
     "special": true,
     "nature": true,
     "image": [
       "https://hips.hearstapps.com/hmg-prod/images/phalaenopsis-orchid-moth-orchid-types-1587739487.jpg"
     ],
-    "color": "red",
+    "color": "pink",
     "description": "description 2",
-    "origin": "origin 1",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Dendrobium",
+    "origin": "Brazil",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=K_40BBOwqnE",
     "id": "1"
   },
@@ -29,11 +25,7 @@
     "color": "white",
     "description": "Cattleya walkeriana is a highly prized species Cattleya, admired for its exquisite white flowers and intense, intoxicating fragrance. This species is known for its compact growth habit and its ability to produce large, showy blooms. It's a favorite among collectors for its beauty and its strong, sweet scent. It's a true gem of the orchid world.",
     "origin": "Brazil",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Cattleya",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "6"
   },
@@ -48,11 +40,7 @@
     "color": "red",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "origin": "China",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Other",
+    "category": 1,
     "video": "",
     "id": "7"
   },
@@ -66,11 +54,7 @@
     "color": "blue",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "origin": "China",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Dendrobium",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=TRBIbSpekHI",
     "nature": true,
     "id": "9"
@@ -85,11 +69,7 @@
     "color": "pink",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "origin": "Indonesia",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Cattleya",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=AuXpkKqNvAc",
     "nature": true,
     "id": "10"
@@ -105,11 +85,7 @@
     "color": "Pink, White",
     "description": "Dendrobium kingianum is a popular and hardy orchid native to Australia. It's known for its clusters of fragrant pink or white flowers. It's relatively easy to grow, making it a good choice for beginners. Its sweet fragrance and delicate blooms make it a delightful addition to any collection.",
     "origin": "Australia",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Dendrobium",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "11"
   },
@@ -124,11 +100,7 @@
     "color": "White",
     "description": "Phalaenopsis amabilis, also known as the Moon Orchid, is a stunning species with elegant, cascading white flowers. It's one of the most recognizable and beloved orchids. Its graceful appearance and long-lasting blooms make it a favorite for both home growers and orchid enthusiasts.",
     "origin": "Southeast Asia, Australia",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Phalaenopsis",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "12"
   },
@@ -143,11 +115,7 @@
     "color": "Various",
     "description": "Cymbidium orchids are popular for their large, showy flowers that come in a wide range of colors. They are often associated with corsages and are known for their long-lasting blooms, particularly in cooler climates. These orchids add a touch of elegance and sophistication to any setting.",
     "origin": "Asia, Australia",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Cymbidium",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "13"
   },
@@ -162,11 +130,7 @@
     "color": "Blue",
     "description": "Vanda coerulea, the Blue Vanda, is a rare and highly sought-after orchid known for its striking blue flowers. True blue orchids are uncommon, making this species particularly special. Its vibrant color and unique appearance make it a prized possession for orchid collectors.",
     "origin": "Northeast India, Myanmar, China, Thailand",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Vanda",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "14"
   },
@@ -181,11 +145,7 @@
     "color": "Pink, White",
     "description": "Paphiopedilum delenatii, a charming lady slipper orchid, is prized for its delicate pink and white flowers. It's known for its sweet fragrance and elegant, pouch-shaped lip. This species is relatively rare and highly sought after by collectors for its beauty and unique characteristics.",
     "origin": "Vietnam",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Paphiopedilum",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "15"
   },
@@ -200,11 +160,7 @@
     "color": "Brown, White",
     "description": "Oncidium 'Sharry Baby' is famous for its intoxicating chocolate and vanilla fragrance. Its small, brown and white flowers are produced in abundance, creating a delightful display. This orchid is relatively easy to grow and its unique scent makes it a favorite among home growers.",
     "origin": "Hybrid",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Oncidium",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "16"
   },
@@ -219,11 +175,7 @@
     "color": "Purple, White",
     "description": "Miltonia spectabilis is a beautiful orchid with large, showy flowers that often feature a striking contrast between purple and white. It's known for its relatively large flower size compared to the plant size. This species adds a vibrant splash of color to any orchid collection.",
     "origin": "Brazil",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Miltonia",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "17"
   },
@@ -238,11 +190,7 @@
     "color": "Green, White",
     "description": "Brassia verrucosa, also known as the Spider Orchid, is recognized for its long, spidery flowers. Its green and white blooms are uniquely shaped and add a touch of exotic flair to any collection. This species is known for its relatively easy care and its distinctive appearance.",
     "origin": "Central and South America",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Brassia",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "18"
   },
@@ -257,11 +205,7 @@
     "color": "White, Yellow",
     "description": "Coelogyne cristata is known for its cascading white flowers with yellow markings on the lip. It's a cool-growing orchid that produces a profusion of blooms, creating a stunning display. Its elegant appearance and delicate fragrance make it a popular choice for orchid enthusiasts.",
     "origin": "Himalayas",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Coelogyne",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "19"
   },
@@ -276,11 +220,7 @@
     "color": "Green, Purple, White",
     "description": "Zygopetalum mackayi is a fragrant orchid known for its striking green, purple, and white flowers. It often has a strong, sweet scent. This orchid is a popular choice for its beautiful blooms and pleasant fragrance, making it a welcome addition to any orchid collection.",
     "origin": "Bolivia, Argentina, Paraguay, Brazil",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Zygopetalum",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "20"
   },
@@ -295,11 +235,7 @@
     "color": "Red, Orange",
     "description": "Masdevallia coccinea is a vibrant orchid prized for its bright red to orange flowers. It has a unique, often triangular shape to its flowers. This species is often grown by enthusiasts who appreciate its intense color and unusual floral structure.",
     "origin": "Colombia",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Masdevallia",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "21"
   },
@@ -314,11 +250,7 @@
     "color": "Green, Purple",
     "description": "Encyclia cordigera is known for its fragrant flowers that are typically green with a purple lip. It's a relatively easy-to-grow orchid that produces a cluster of blooms. This species is appreciated for its resilience and pleasant fragrance.",
     "origin": "Mexico",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Encyclia",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "22"
   },
@@ -333,11 +265,7 @@
     "color": "White, Yellow",
     "description": "Catasetum pileatum is a unique orchid known for its unusual flowers and explosive pollen release mechanism. The flowers are often white or cream-colored with yellow markings. This orchid is a fascinating species that attracts attention for its specialized adaptations.",
     "origin": "Colombia",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Catasetum",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "id": "23"
   },
@@ -351,11 +279,7 @@
     "color": "red",
     "description": "test",
     "origin": "China",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Dendrobium",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=TRBIbSpekHI",
     "nature": true,
     "id": "24"
@@ -370,11 +294,7 @@
     "color": "red",
     "description": "test",
     "origin": "China",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Vanda",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=TRBIbSpekHI",
     "nature": false,
     "id": "25"
@@ -389,11 +309,7 @@
     "color": "red",
     "description": "test",
     "origin": "Brazil",
-    "feedback": {
-        ["rating": 5],
-        ["comment": "beautiful orchid"]
-    },
-    "category": "Cattleya",
+    "category": 1,
     "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
     "nature": false,
     "id": "26"

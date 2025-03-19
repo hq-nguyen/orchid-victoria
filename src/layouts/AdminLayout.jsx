@@ -1,13 +1,17 @@
 import { Outlet } from "react-router-dom"
 import AdminHeader from "../components/Header/AdminHeader"
+import AdminSidebar from "../components/Sidebar/AdminSidebar"
 
 const AdminLayout = () => {
 
     return (
-        <div>
+        <div className="min-h-screen bg-background">
             <AdminHeader />
-            <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
-                <Outlet />
+            <div className="flex">
+                <AdminSidebar />
+                <div className="flex-1 p-6 md:p-8 lg:p-10">
+                    <Outlet />
+                </div>
             </div>
         </div>
     )

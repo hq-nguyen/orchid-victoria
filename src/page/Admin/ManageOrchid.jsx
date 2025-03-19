@@ -1,6 +1,7 @@
 import { Button, Image, Space, Table, Tag, message, Modal } from 'antd';
 import { useEffect, useState } from 'react';
 import { fetchOrchids, createOrchid, updateOrchid, deleteOrchid } from '../../service/api.orchid';
+import { getCategories } from '../../service/api.category';
 import {
     EditOutlined,
     DeleteOutlined
@@ -10,23 +11,44 @@ import toast from 'react-hot-toast';
 
 function ManageOrchid() {
     const [orchids, setOrchids] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [modelVisible, setModelVisible] = useState(false);
     const [editingOrchid, setEditingOrchid] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        fetchOrchidData();
+        fetchData();
     }, []);
 
-    const fetchOrchidData = async () => {
+    const fetchData = async () => {
         try {
-            const orchidData = await fetchOrchids();
-            const orchidArray = Array.isArray(orchidData) ? orchidData :
+            setLoading(true);
+
+            const [orchidData, categoryData] = await Promise.all([
+                fetchOrchids(),
+                getCategories(),
+            ])
+
+            const orchids = Array.isArray(orchidData) ? orchidData :
                 (orchidData.data ? orchidData.data : []);
 
-            setOrchids(orchidArray);
-            console.log('Orchid data structure:', orchidArray);
+            const categories = Array.isArray(categoryData) ? categoryData :
+                (categoryData.data ? categoryData.data : []);
+
+            const categoryMap = categories.reduce((map, category) => {
+                map[category.id] = category.name;
+                return map;
+            }, {});
+
+            // Enhance orchid data with category names
+            const enhancedOrchids = orchids.map(orchid => ({
+                ...orchid,
+                categoryName: categoryMap[orchid.categoryId] || 'Unknown Category'
+            }));
+
+            setOrchids(enhancedOrchids);
+            setCategories(categories);
         } catch (error) {
             console.error('Error while fetching orchid data', error);
             message.error('Failed to load orchid data');
@@ -74,16 +96,19 @@ function ManageOrchid() {
 
     const handleModelSubmit = async (orchidData) => {
         try {
+            // Remove the categoryName field from the data
+            const { categoryName, ...dataToSave } = orchidData;
+
             if (isEditing) {
-                await updateOrchid(editingOrchid.id, orchidData);
+                await updateOrchid(editingOrchid.id, dataToSave);
                 message.success('Orchid updated successfully');
             } else {
-                await createOrchid(orchidData);
+                await createOrchid(dataToSave);
                 message.success('Orchid created successfully');
             }
 
             setModelVisible(false);
-            fetchOrchidData();
+            fetchData();
         } catch (error) {
             console.error('Error saving orchid:', error);
             message.error('Failed to save orchid');
@@ -129,8 +154,8 @@ function ManageOrchid() {
         },
         {
             title: 'Category',
-            dataIndex: 'category',
-            key: 'category',
+            dataIndex: 'categoryName',
+            key: 'categoryName',
             width: 120,
         },
         {
@@ -244,6 +269,7 @@ function ManageOrchid() {
                     onSubmit={handleModelSubmit}
                     initialValues={editingOrchid}
                     isEdit={isEditing}
+                    categories={categories}
                 />
             )}
         </div>
