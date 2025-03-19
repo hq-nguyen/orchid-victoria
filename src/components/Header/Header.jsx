@@ -1,9 +1,11 @@
-import { useState, useEffect, useRef } from "react";
-import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
+import { useState, useEffect, useRef, use } from "react";
+import { FiSun, FiMoon, FiMenu, FiX, FiSearch } from "react-icons/fi";
 import { MdLogin, MdLogout } from "react-icons/md";
 import { data } from "../../assets/data";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { UserAuth } from "../../context/AuthContext"; // Make sure this path is correct
+import { UserAuth } from "../../context/AuthContext";
+import useOrchidStore from "../../store/OrchidStore";
+import LoadingComponent from "../Loading/Loading";
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -16,11 +18,20 @@ const Header = () => {
     const [activeItem, setActiveItem] = useState("home");
     const userMenuRef = useRef(null);
     const navigate = useNavigate();
-    
+
     // Get auth context
     const auth = UserAuth();
     const { user, googleLogin, logout } = auth || {};
-    
+    // Get orchid state
+    const { loading, setSearchQuery } = useOrchidStore();
+    const [searchText, setSearchText] = useState('');
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        setSearchQuery(searchText);
+        navigate('/');
+    }
+
+
     useEffect(() => {
         document.documentElement.classList.toggle("dark", isDark);
         localStorage.setItem("theme", isDark ? "dark" : "light");
@@ -74,7 +85,7 @@ const Header = () => {
 
     const toggleMenu = () => setIsOpen(!isOpen);
     const toggleTheme = () => setIsDark(!isDark);
-    
+
     // Close user menu when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -82,12 +93,16 @@ const Header = () => {
                 setShowUserMenu(false);
             }
         };
-        
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
+
+    if (loading) {
+        <LoadingComponent text="Waiting for searching..." />;
+    }
 
     return (
         <div className="bg-card dark:bg-secondary-foreground shadow-lg sticky w-full top-0 z-50">
@@ -106,15 +121,13 @@ const Header = () => {
                             <Link
                                 key={item.name}
                                 to={item.path}
-                                className={`text-accent hover:text-primary dark:text-muted-foreground dark:hover:text-primary-foreground capitalize relative group ${
-                                    activeItem === item.name ? "text-primary dark:text-primary-foreground" : ""
-                                }`}
+                                className={`text-accent hover:text-primary dark:text-muted-foreground dark:hover:text-primary-foreground capitalize relative group ${activeItem === item.name ? "text-primary dark:text-primary-foreground" : ""
+                                    }`}
                             >
                                 {item.name}
                                 <span
-                                    className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-primary-foreground transition-all duration-300 group-hover:w-full ${
-                                        activeItem === item.name ? "w-full" : ""
-                                    }`}
+                                    className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary dark:bg-primary-foreground transition-all duration-300 group-hover:w-full ${activeItem === item.name ? "w-full" : ""
+                                        }`}
                                 />
                             </Link>
                         ))}
@@ -122,6 +135,25 @@ const Header = () => {
 
                     {/* Right Section */}
                     <div className="hidden md:flex items-center space-x-2">
+                        {/* search bar */}
+                        <div className="hidden md:block flex-grow mx-8">
+                            <form onSubmit={handleSearchSubmit} className="relative text-black dark:text-white">
+                                <input
+                                    type="text"
+                                    placeholder="Search name orchids..."
+                                    value={searchText}
+                                    onChange={(e) => setSearchText(e.target.value)}
+                                    className="w-full py-1.5 pl-3 pr-10 rounded-md border border-border dark:border-accent bg-background dark:bg-accent/30 focus:outline-none focus:ring-2 dark:focus:ring-blue-600 focus:ring-primary"
+                                />
+                                <button
+                                    type="submit"
+                                    className="absolute right-0 top-0 mr-2 mt-2 text-accent hover:text-primary dark:text-primary-foreground"
+                                >
+                                    <FiSearch />
+                                </button>
+                            </form>
+                        </div>
+                        {/* theme */}
                         <button
                             onClick={toggleTheme}
                             className="p-2 rounded-full hover:bg-muted dark:hover:bg-accent transition-colors"
@@ -144,9 +176,9 @@ const Header = () => {
                                 {user ? (
                                     <div className="flex items-center">
                                         {user.photoURL ? (
-                                            <img 
-                                                src={user.photoURL} 
-                                                alt="Profile" 
+                                            <img
+                                                src={user.photoURL}
+                                                alt="Profile"
                                                 className="w-6 h-6 rounded-full"
                                             />
                                         ) : (
@@ -191,9 +223,27 @@ const Header = () => {
                             )}
                         </div>
                     </div>
-                    
+
                     {/* Mobile menu button */}
                     <div className="md:hidden">
+                        {/* <div className="px-2 py-3">
+                            <form onSubmit={handleSearchSubmit} className="relative">
+                                <input
+                                    type="text"
+                                    placeholder="Search orchids..."
+                                    value={searchText}
+                                    onChange={(e) => setSearchText(e.target.value)}
+                                    className="w-full py-1.5 pl-3 pr-10 rounded-md border border-border dark:border-accent bg-background dark:bg-accent/30 focus:outline-none focus:ring-2 focus:ring-primary"
+                                />
+                                <button
+                                    type="submit"
+                                    className="absolute right-0 top-0 mr-2 mt-2 text-accent hover:text-primary dark:text-primary-foreground"
+                                >
+                                    <FiSearch />
+                                </button>
+                            </form>
+                        </div> */}
+
                         <button
                             onClick={toggleMenu}
                             className="p-2 rounded-md text-accent hover:text-primary dark:text-muted-foreground dark:hover:text-primary-foreground"
@@ -216,11 +266,10 @@ const Header = () => {
                                     setActiveItem(item.name);
                                     setIsOpen(false);
                                 }}
-                                className={`block px-3 py-2 rounded-md text-base w-full text-left capitalize ${
-                                    activeItem === item.name
-                                        ? "bg-primary text-primary-foreground"
-                                        : "text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent"
-                                }`}
+                                className={`block px-3 py-2 rounded-md text-base w-full text-left capitalize ${activeItem === item.name
+                                    ? "bg-primary text-primary-foreground"
+                                    : "text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent"
+                                    }`}
                             >
                                 {item.name}
                             </Link>
@@ -233,17 +282,17 @@ const Header = () => {
                                 {isDark ? <FiSun className="w-5 h-5 mr-2" /> : <FiMoon className="w-5 h-5 mr-2" />}
                                 {isDark ? "Light Mode" : "Dark Mode"}
                             </button>
-                            
+
                             {user ? (
                                 <>
-                                    <Link 
-                                        to="/admin" 
+                                    <Link
+                                        to="/admin"
                                         className="flex items-center px-3 py-2 rounded-md text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent w-full"
                                         onClick={() => setIsOpen(false)}
                                     >
                                         Dashboard
                                     </Link>
-                                    <button 
+                                    <button
                                         onClick={() => {
                                             handleLogout();
                                             setIsOpen(false);
@@ -255,11 +304,11 @@ const Header = () => {
                                     </button>
                                 </>
                             ) : (
-                                <button 
+                                <button
                                     onClick={() => {
                                         handleLogin();
                                         setIsOpen(false);
-                                    }} 
+                                    }}
                                     className="flex items-center px-3 py-2 rounded-md text-accent hover:bg-muted dark:text-muted-foreground dark:hover:bg-accent w-full"
                                 >
                                     <MdLogin className="w-5 h-5 mr-2" />

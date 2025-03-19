@@ -5,7 +5,7 @@ import {
     signOut,
   } from "firebase/auth";
   import { createContext, useContext, useEffect, useState } from "react";
-  import { auth } from "../config/firebase"; // Update this path to match your project structure
+  import { auth } from "../config/firebase"; 
   
   const AuthContext = createContext();
   
@@ -13,7 +13,6 @@ import {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     
-    // login function
     const googleLogin = async () => {
       const provider = new GoogleAuthProvider();
       try {
@@ -25,7 +24,6 @@ import {
       }
     };
     
-    // logout function
     const logout = async () => {
       try {
         await signOut(auth);
@@ -35,20 +33,17 @@ import {
       }
     };
     
-    // Check if user is authenticated 
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser);
         setLoading(false);
       });
       
-      // Cleanup subscription on unmount
       return () => {
         unsubscribe();
       };
     }, []);
     
-    // Provide auth context values
     const value = {
       user,
       loading,
@@ -64,7 +59,6 @@ import {
     );
   };
   
-  // Custom hook to use auth context
   export const UserAuth = () => {
     const context = useContext(AuthContext);
     if (!context) {
