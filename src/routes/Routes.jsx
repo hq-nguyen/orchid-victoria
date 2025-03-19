@@ -10,6 +10,7 @@ import AdminLayout from "../layouts/AdminLayout"
 import AboutUs from "../page/AboutUs"
 import ManageOrchid from "../page/Admin/ManageOrchid"
 import ProtectedRoute from "./ProtectedRoute"
+import ManageCategory from "../page/Admin/ManageCategory"
 
 const Routes = () => {
     const routing = useRoutes([
@@ -19,7 +20,7 @@ const Routes = () => {
             children: [
                 {
                     index: true,
-                    element: <Home />   
+                    element: <Home />
                 },
                 {
                     path: "orchid/:id",
@@ -54,10 +55,14 @@ const Routes = () => {
                     <AdminLayout />
                 </ProtectedRoute>
             ),
-            children:[
+            children: [
                 {
                     index: true,
-                    element: <ManageOrchid/>
+                    element: <ManageOrchid />
+                },
+                {
+                    path: "categories",
+                    element: <ManageCategory />
                 }
             ]
         }

@@ -1,0 +1,379 @@
+{
+  "categories": [
+    {
+      "name": "African Violets",
+      "image": "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2FAfrican-Violets-Monet.png?alt=media&token=84e23ab1-66a2-42b4-aaff-0d81350628d6",
+      "id": "1"
+    },
+    {
+      "name": "Cattleyas ",
+      "image": "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2FCattleyas.png?alt=media&token=9a23858e-6d9b-4b33-ba3e-1bdde30a2a99",
+      "id": "2"
+    },
+    {
+      "name": "Dendrobiums",
+      "image": "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2FDendobrium-768x576.png?alt=media&token=3108626a-6152-4ecc-8752-3f0ace136cc8",
+      "id": "3"
+    },
+    {
+      "name": "Paphiopedilum",
+      "image": "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2FPaphiopedilum-768x576.png?alt=media&token=3754092e-2d81-423f-9aac-6a606be22e53",
+      "id": "4"
+    },
+    {
+      "name": "Phalaenopsis",
+      "image": "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2FPhalaenopsis-768x576.png?alt=media&token=88dfc2c8-152c-4a96-8128-32a885823b24",
+      "id": "5"
+    },
+    {
+      "name": "Vandaceous",
+      "image": "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2FRhy-gigantea-689-450x450.jpg?alt=media&token=eaceb4d1-62e1-4830-94c4-5d6202b01a74",
+      "id": "6"
+    }
+  ],
+  "orchid": [
+    {
+      "name": "Selenium Auto Testing",
+      "rating": 4,
+      "special": true,
+      "nature": true,
+      "image": [
+        "https://hips.hearstapps.com/hmg-prod/images/phalaenopsis-orchid-moth-orchid-types-1587739487.jpg"
+      ],
+      "color": "pink",
+      "description": "description 2",
+      "origin": "Brazil",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=K_40BBOwqnE",
+      "id": "1"
+    },
+    {
+      "name": "Cattleya walkeriana",
+      "rating": 4,
+      "special": false,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-8.1.jpg?alt=media&token=37e27649-6bbf-45b5-a741-9f16dc7e8ce3"
+      ],
+      "color": "white",
+      "description": "Cattleya walkeriana is a highly prized species Cattleya, admired for its exquisite white flowers and intense, intoxicating fragrance. This species is known for its compact growth habit and its ability to produce large, showy blooms. It's a favorite among collectors for its beauty and its strong, sweet scent. It's a true gem of the orchid world.",
+      "origin": "Brazil",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "6"
+    },
+    {
+      "name": "Nodosa",
+      "rating": 5,
+      "special": false,
+      "nature": false,
+      "image": [
+        "https://peppyflora.com/wp-content/uploads/2023/01/Brassavola-Nodosa-Lady-of-The-Night-Orchid-3x4-Product-Peppyflora-01-a-Moz.jpg"
+      ],
+      "color": "red",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "origin": "China",
+      "categoryId": "6",
+      "video": "",
+      "id": "7"
+    },
+    {
+      "name": "Normal test",
+      "rating": 0,
+      "special": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-7.1.jpg?alt=media&token=908b2abc-6948-457d-acfe-7c95a1650c1e"
+      ],
+      "color": "blue",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "origin": "China",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=TRBIbSpekHI",
+      "nature": true,
+      "id": "9"
+    },
+    {
+      "name": "Mini Yaya",
+      "rating": 4.7,
+      "special": false,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Fmiya.jpg?alt=media&token=a8fc1854-38d8-4b32-8718-8ebe2d271bd1"
+      ],
+      "color": "pink",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "origin": "Indonesia",
+      "categoryId": "3",
+      "video": "https://www.youtube.com/watch?v=AuXpkKqNvAc",
+      "nature": true,
+      "id": "10"
+    },
+    {
+      "name": "Dendrobium kingianum",
+      "rating": 4.5,
+      "special": false,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-1.1.jpg?alt=media&token=a20cf01f-0b49-433b-aa1b-6bb8da9ad385"
+      ],
+      "color": "Pink, White",
+      "description": "Dendrobium kingianum is a popular and hardy orchid native to Australia. It's known for its clusters of fragrant pink or white flowers. It's relatively easy to grow, making it a good choice for beginners. Its sweet fragrance and delicate blooms make it a delightful addition to any collection.",
+      "origin": "Australia",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "11"
+    },
+    {
+      "name": "Phalaenopsis amabilis",
+      "rating": 5,
+      "special": true,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-2.1.jpg?alt=media&token=ad43d2d7-e224-45b1-8a05-7845a43a250f"
+      ],
+      "color": "White",
+      "description": "Phalaenopsis amabilis, also known as the Moon Orchid, is a stunning species with elegant, cascading white flowers. It's one of the most recognizable and beloved orchids. Its graceful appearance and long-lasting blooms make it a favorite for both home growers and orchid enthusiasts.",
+      "origin": "Southeast Asia, Australia",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "12"
+    },
+    {
+      "name": "Cymbidium orchid",
+      "rating": 4,
+      "special": false,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-3.1.jpg?alt=media&token=a20298ed-0341-4458-942d-b91e22f27167"
+      ],
+      "color": "Various",
+      "description": "Cymbidium orchids are popular for their large, showy flowers that come in a wide range of colors. They are often associated with corsages and are known for their long-lasting blooms, particularly in cooler climates. These orchids add a touch of elegance and sophistication to any setting.",
+      "origin": "Asia, Australia",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "13"
+    },
+    {
+      "name": "Vanda coerulea",
+      "rating": 5,
+      "special": true,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-4.1.jpg?alt=media&token=46a7aa1b-7d95-47a5-a02c-afe80a9b83f7"
+      ],
+      "color": "Blue",
+      "description": "Vanda coerulea, the Blue Vanda, is a rare and highly sought-after orchid known for its striking blue flowers. True blue orchids are uncommon, making this species particularly special. Its vibrant color and unique appearance make it a prized possession for orchid collectors.",
+      "origin": "Northeast India, Myanmar, China, Thailand",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "14"
+    },
+    {
+      "name": "Paphiopedilum delenatii",
+      "rating": 4,
+      "special": true,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-5.1.jpg?alt=media&token=40093a94-dc7f-43ce-a420-e69f26c25817"
+      ],
+      "color": "Pink, White",
+      "description": "Paphiopedilum delenatii, a charming lady slipper orchid, is prized for its delicate pink and white flowers. It's known for its sweet fragrance and elegant, pouch-shaped lip. This species is relatively rare and highly sought after by collectors for its beauty and unique characteristics.",
+      "origin": "Vietnam",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "15"
+    },
+    {
+      "name": "Oncidium 'Sharry Baby'",
+      "rating": 4,
+      "special": false,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-6.1.jpg?alt=media&token=2197b500-e33f-4687-b3fb-e89961bbef9a"
+      ],
+      "color": "Brown, White",
+      "description": "Oncidium 'Sharry Baby' is famous for its intoxicating chocolate and vanilla fragrance. Its small, brown and white flowers are produced in abundance, creating a delightful display. This orchid is relatively easy to grow and its unique scent makes it a favorite among home growers.",
+      "origin": "Hybrid",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "16"
+    },
+    {
+      "name": "Miltonia spectabilis",
+      "rating": 3,
+      "special": false,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-8.1.jpg?alt=media&token=225ed01a-a15f-4896-ad27-71a40964d656"
+      ],
+      "color": "Purple, White",
+      "description": "Miltonia spectabilis is a beautiful orchid with large, showy flowers that often feature a striking contrast between purple and white. It's known for its relatively large flower size compared to the plant size. This species adds a vibrant splash of color to any orchid collection.",
+      "origin": "Brazil",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "17"
+    },
+    {
+      "name": "Brassia verrucosa",
+      "rating": 4,
+      "special": false,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-16.1.jpg?alt=media&token=98473e2c-55b7-484b-a7e0-0f60729dbf84"
+      ],
+      "color": "Green, White",
+      "description": "Brassia verrucosa, also known as the Spider Orchid, is recognized for its long, spidery flowers. Its green and white blooms are uniquely shaped and add a touch of exotic flair to any collection. This species is known for its relatively easy care and its distinctive appearance.",
+      "origin": "Central and South America",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "18"
+    },
+    {
+      "name": "Coelogyne cristata",
+      "rating": 4,
+      "special": false,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-14.1.jpg?alt=media&token=b3c82dc0-8a59-4938-b34b-0304f5d6d8ce"
+      ],
+      "color": "White, Yellow",
+      "description": "Coelogyne cristata is known for its cascading white flowers with yellow markings on the lip. It's a cool-growing orchid that produces a profusion of blooms, creating a stunning display. Its elegant appearance and delicate fragrance make it a popular choice for orchid enthusiasts.",
+      "origin": "Himalayas",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "19"
+    },
+    {
+      "name": "Zygopetalum mackayi",
+      "rating": 4,
+      "special": false,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-12.1.jpg?alt=media&token=0e2ff551-825c-4880-a2ff-cae7bfca9ad2"
+      ],
+      "color": "Green, Purple, White",
+      "description": "Zygopetalum mackayi is a fragrant orchid known for its striking green, purple, and white flowers. It often has a strong, sweet scent. This orchid is a popular choice for its beautiful blooms and pleasant fragrance, making it a welcome addition to any orchid collection.",
+      "origin": "Bolivia, Argentina, Paraguay, Brazil",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "20"
+    },
+    {
+      "name": "Masdevallia coccinea",
+      "rating": 4,
+      "special": true,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-11.1.jpg?alt=media&token=e659c2c9-fa1d-4f4c-b7f3-f38166eb9c59"
+      ],
+      "color": "Red, Orange",
+      "description": "Masdevallia coccinea is a vibrant orchid prized for its bright red to orange flowers. It has a unique, often triangular shape to its flowers. This species is often grown by enthusiasts who appreciate its intense color and unusual floral structure.",
+      "origin": "Colombia",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "21"
+    },
+    {
+      "name": "Encyclia cordigera",
+      "rating": 4,
+      "special": false,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-10.1.jpg?alt=media&token=ab592cac-6e5d-4eeb-a118-f521894d8d0f"
+      ],
+      "color": "Green, Purple",
+      "description": "Encyclia cordigera is known for its fragrant flowers that are typically green with a purple lip. It's a relatively easy-to-grow orchid that produces a cluster of blooms. This species is appreciated for its resilience and pleasant fragrance.",
+      "origin": "Mexico",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "22"
+    },
+    {
+      "name": "Catasetum pileatum",
+      "rating": 4,
+      "special": true,
+      "nature": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-8.1.jpg?alt=media&token=44a0d0ab-325d-4708-82ff-f2277b2d0d1b"
+      ],
+      "color": "White, Yellow",
+      "description": "Catasetum pileatum is a unique orchid known for its unusual flowers and explosive pollen release mechanism. The flowers are often white or cream-colored with yellow markings. This orchid is a fascinating species that attracts attention for its specialized adaptations.",
+      "origin": "Colombia",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "id": "23"
+    },
+    {
+      "name": "test",
+      "rating": 4,
+      "special": false,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Fnews-4.png?alt=media&token=c59c6c3c-89a3-42a4-b2cd-d67f12e8d251"
+      ],
+      "color": "red",
+      "description": "test",
+      "origin": "China",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=TRBIbSpekHI",
+      "nature": true,
+      "id": "24"
+    },
+    {
+      "name": "test",
+      "rating": 0,
+      "special": false,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Favatar.jpg?alt=media&token=dd6db6d0-91d3-4ae5-8172-8174eaa7c68a"
+      ],
+      "color": "red",
+      "description": "test",
+      "origin": "China",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=TRBIbSpekHI",
+      "nature": false,
+      "id": "25"
+    },
+    {
+      "name": "Test 2",
+      "rating": 4,
+      "special": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Favatar.jpg?alt=media&token=743dd9c3-b44a-475e-8826-11d187bf95f1"
+      ],
+      "color": "red",
+      "description": "test",
+      "origin": "Brazil",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "nature": false,
+      "id": "26"
+    },
+    {
+      "name": "test with cate",
+      "rating": 4,
+      "special": true,
+      "image": [
+        "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2FRhy-gigantea-689-450x450.jpg?alt=media&token=3586a215-9255-4e8a-947e-e2b3fe1d90a4"
+      ],
+      "color": "red",
+      "description": "test",
+      "origin": "Brazil",
+      "categoryId": "1",
+      "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
+      "nature": false,
+      "id": "27"
+    },
+    {
+      "id": "c0c1",
+      "name": "Testing Json Server",
+      "categoryId": "6",
+      "special": true,
+      "nature": false,
+      "color": "",
+      "rating": 5,
+      "description": "as",
+      "origin": "",
+      "video": "",
+      "image": []
+    }
+  ]
+}

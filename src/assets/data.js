@@ -31,7 +31,8 @@ export const data = {
   news_3,
   news_4,
   news_5,
-  news_6
+  news_6,
+  orchid_1a
 }
 
 export const orchids = [

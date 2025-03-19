@@ -12,7 +12,7 @@ const OrchidSchema = Yup.object().shape({
   name: Yup.string()
     .required('Name is required')
     .max(100, 'Name must be less than 100 characters'),
-  category: Yup.string()
+  categoryId: Yup.string()
     .required('Category is required'),
   rating: Yup.number()
     .min(0, 'Rating must be at least 0')
@@ -28,12 +28,12 @@ const OrchidSchema = Yup.object().shape({
 // Star Rating Component
 const StarRating = ({ value, onChange }) => {
   const [hoverRating, setHoverRating] = useState(0);
-  
+
   return (
     <div className="flex">
       {[1, 2, 3, 4, 5].map((star) => (
-        <div 
-          key={star} 
+        <div
+          key={star}
           className="cursor-pointer px-1"
           onClick={() => onChange(star)}
           onMouseEnter={() => setHoverRating(star)}
@@ -50,7 +50,7 @@ const StarRating = ({ value, onChange }) => {
   );
 };
 
-const OrchidModel = ({ visible, onCancel, onSubmit, initialValues = null, isEdit = false }) => {
+const OrchidModel = ({ visible, onCancel, onSubmit, initialValues = null, isEdit = false, categories }) => {
   const [fileList, setFileList] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -117,7 +117,7 @@ const OrchidModel = ({ visible, onCancel, onSubmit, initialValues = null, isEdit
 
     return {
       name: '',
-      category: '',
+      categoryId: '',
       special: false,
       nature: false,
       color: '',
@@ -200,23 +200,22 @@ const OrchidModel = ({ visible, onCancel, onSubmit, initialValues = null, isEdit
                 <div className="flex-1">
                   <label className="block text-sm font-medium mb-1">Category *</label>
                   <Select
-                    name="category"
+                    name="categoryId"
                     placeholder="Select a category"
-                    value={values.category}
-                    onChange={(value) => setFieldValue('category', value)}
+                    value={values.categoryId}
+                    onChange={(value) => setFieldValue('categoryId', value)}
                     onBlur={handleBlur}
-                    status={touched.category && errors.category ? 'error' : ''}
+                    status={touched.categoryId && errors.categoryId ? 'error' : ''}
                     style={{ width: '100%' }}
                   >
-                    <Option value="Phalaenopsis">Phalaenopsis</Option>
-                    <Option value="Cattleya">Cattleya</Option>
-                    <Option value="Dendrobium">Dendrobium</Option>
-                    <Option value="Vanda">Vanda</Option>
-                    <Option value="Oncidium">Oncidium</Option>
-                    <Option value="Other">Other</Option>
+                    {categories.map((category) => (
+                      <Select.Option key={category.id} value={category.id}>
+                        {category.name}
+                      </Select.Option>
+                    ))}
                   </Select>
                   {touched.category && errors.category && (
-                    <div className="text-red-500 text-xs mt-1">{errors.category}</div>
+                    <div className="text-red-500 text-xs mt-1">{errors.categoryId}</div>
                   )}
                 </div>
 

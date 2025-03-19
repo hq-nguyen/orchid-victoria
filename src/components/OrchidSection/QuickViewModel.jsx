@@ -1,5 +1,3 @@
-// QuickViewModel.js
-import PropTypes from 'prop-types';
 import { useRef, useEffect } from 'react';
 import { IoMdClose } from "react-icons/io";
 import ModalPortal from './ModalPortal';
@@ -8,8 +6,7 @@ const QuickViewModel = ({ orchid, onClose }) => {
     const modalRef = useRef(null);
 
     useEffect(() => {
-        // Ensure modal opens at center by appending to body
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        document.body.style.overflow = 'hidden'; 
 
         const handleClickOutside = (event) => {
             if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -20,7 +17,7 @@ const QuickViewModel = ({ orchid, onClose }) => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
-            document.body.style.overflow = ''; // Restore scrolling when modal closes
+            document.body.style.overflow = '';
         };
     }, [onClose]);
 
@@ -32,9 +29,7 @@ const QuickViewModel = ({ orchid, onClose }) => {
         <ModalPortal>
             <div id="default-modal" className="fixed top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center overflow-x-hidden overflow-y-auto bg-gray-500 bg-opacity-50">
                 <div className="relative p-4 w-full max-w-lg max-h-full" ref={modalRef}>
-                    {/* Modal content */}
                     <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                        {/* Modal header */}
                         <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                                 {orchid.name}
@@ -47,11 +42,10 @@ const QuickViewModel = ({ orchid, onClose }) => {
                                 <IoMdClose />
                             </button>
                         </div>
-                        {/* Modal body */}
                         <div className="p-4 md:p-5 space-y-4">
                             <img
                                 className="w-full h-80 object-fit rounded-md mb-4 shadow-lg"
-                                src={orchid.image}
+                                src={orchid.image[0]} 
                                 alt={orchid.name}
                             />
                             <p className="text-base leading-relaxed text-black dark:text-gray-400">
@@ -63,9 +57,7 @@ const QuickViewModel = ({ orchid, onClose }) => {
                             <p className='text-base leading-relaxed text-black dark:text-gray-400'>
                                 Description: <span className='text-red-500'>{orchid.description}</span>
                             </p>
-                            {/* You can add more orchid details here */}
                         </div>
-                        {/* Modal footer */}
                         <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                             <button
                                 onClick={onClose}
@@ -74,27 +66,12 @@ const QuickViewModel = ({ orchid, onClose }) => {
                             >
                                 Close
                             </button>
-                            {/* You can add other buttons here if needed */}
                         </div>
                     </div>
                 </div>
-
             </div>
         </ModalPortal>
     );
-};
-
-QuickViewModel.propTypes = {
-    orchid: PropTypes.shape({
-        Id: PropTypes.number.isRequired,
-        image: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        origin: PropTypes.string.isRequired,
-        category: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-
-    }).isRequired,
-    onClose: PropTypes.func.isRequired,
 };
 
 export default QuickViewModel;
