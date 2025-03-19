@@ -5,9 +5,10 @@ import {
     fetchOrchidById,
     fetchOrchids,
     updateOrchid,
-    searchOrchids, // Import searchOrchids
+    searchOrchids,
 } from '../service/api.orchid';
 import { addFeedback, deleteFeedback, updateFeedback } from '../service/api.feedback';
+import { getCategories } from '../service/api.category';
 
 const useOrchidStore = create((set, get) => ({
     orchids: [],
@@ -16,7 +17,11 @@ const useOrchidStore = create((set, get) => ({
     loading: false,
     error: null,
     searchQuery: '',
-    selectedCategory: 'all',
+    selectedCategories: [], // Changed from selectedCategory string to array
+    selectedColors: [],
+    selectedType: 'all',
+    sortOption: 'featured',
+    categories: [],
 
     // Centralized fetchOrchids with optional search query
     fetchOrchids: async () => {
@@ -35,19 +40,14 @@ const useOrchidStore = create((set, get) => ({
 
     searchOrchidsAction: async (query) => {
         try {
-            set({ loading: true, error: null, searchQuery: query }); // Set searchQuery immediately
+            set({ loading: true, error: null, searchQuery: query });
             const orchids = await searchOrchids(query);
-
-            // Filter the orchids array based on the search query
-            const filteredOrchids = orchids.filter((orchid) =>
-                orchid.name.toLowerCase().includes(query.toLowerCase())
-            );
-
             set({
-                orchids: orchids, // Keep all orchids in the orchids state
-                filteredOrchids: filteredOrchids, // Update the filteredOrchids state with search results
+                orchids: orchids,
+                filteredOrchids: orchids,
                 loading: false,
             });
+            get().applyFilters();
         } catch (error) {
             set({ error: error.message, loading: false });
         }
@@ -65,6 +65,22 @@ const useOrchidStore = create((set, get) => ({
         }
     },
 
+    fetchCategories: async () => {
+        try {
+            set({ loading: true, error: null });
+            const categories = await getCategories();
+            set({
+                categories,
+                loading: false,
+            });
+            return categories;
+        } catch (error) {
+            set({ error: error.message, loading: false });
+            return [];
+        }
+    },
+
+    // CRUD operations for orchids
     addOrchid: async (orchidData) => {
         try {
             set({ loading: true, error: null });
@@ -115,26 +131,135 @@ const useOrchidStore = create((set, get) => ({
         }
     },
 
+    // Filter setters
     setSearchQuery: (query) => {
         set({ searchQuery: query });
-    },
-    setSelectedCategory: (categoryId) => {
-        set({ selectedCategory: categoryId });
         get().applyFilters();
     },
 
+    setSelectedCategory: (categoryId) => {
+        set((state) => {
+            // If categoryId is an array, replace the entire selection
+            if (Array.isArray(categoryId)) {
+                return { selectedCategories: categoryId };
+            }
+
+            // Toggle the category in the array
+            const currentCategories = [...state.selectedCategories];
+            const index = currentCategories.indexOf(categoryId);
+
+            if (index >= 0) {
+                currentCategories.splice(index, 1);
+            } else {
+                currentCategories.push(categoryId);
+            }
+
+            return { selectedCategories: currentCategories };
+        });
+        get().applyFilters();
+    },
+
+    setSelectedColor: (color) => {
+        set((state) => {
+            const currentColors = [...state.selectedColors];
+            const index = currentColors.indexOf(color);
+
+            if (index >= 0) {
+                currentColors.splice(index, 1);
+            } else {
+                currentColors.push(color);
+            }
+
+            return { selectedColors: currentColors };
+        });
+        get().applyFilters();
+    },
+
+    setOrchidType: (type) => {
+        set({ selectedType: type });
+        get().applyFilters();
+    },
+
+    setSortOption: (option) => {
+        set({ sortOption: option });
+        get().applyFilters();
+    },
+
+    // Sorting function
+    applySorting: () => {
+        const { filteredOrchids, sortOption } = get();
+        let sorted = [...filteredOrchids];
+
+        switch (sortOption) {
+            case 'a-z':
+                sorted.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+            case 'z-a':
+                sorted.sort((a, b) => b.name.localeCompare(a.name));
+                break;
+            case 'featured':
+            default:
+                // Keep original order for featured
+                break;
+        }
+        set({ filteredOrchids: sorted });
+    },
+
+    // Fixed filtering function
     applyFilters: () => {
-        const { orchids, searchQuery, selectedCategory } = get();
+        const { orchids, searchQuery, selectedCategories, selectedColors, selectedType } = get();
         let filtered = [...orchids];
 
-        // Apply search filter (moved to fetchOrchids)
+        // Apply search filter
+        if (searchQuery) {
+            filtered = filtered.filter((orchid) =>
+                orchid.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                (orchid.description && orchid.description.toLowerCase().includes(searchQuery.toLowerCase()))
+            );
+        }
 
         // Apply category filter
-        if (selectedCategory !== 'all') {
-            filtered = filtered.filter((orchid) => orchid.categoryId === selectedCategory);
+        if (selectedCategories.length > 0) {
+            filtered = filtered.filter((orchid) =>
+                orchid.categoryId && selectedCategories.includes(orchid.categoryId.toString())
+            );
+        }
+
+        // Apply color filter
+        if (selectedColors.length > 0) {
+            filtered = filtered.filter((orchid) => {
+                if (!orchid.color) return false;
+
+                // Handle color as a comma-separated string
+                if (typeof orchid.color === 'string') {
+                    const orchidColors = orchid.color.toLowerCase().split(',').map(c => c.trim());
+                    return selectedColors.some(selectedColor =>
+                        orchidColors.includes(selectedColor.toLowerCase())
+                    );
+                }
+
+                // Handle color as an array
+                if (Array.isArray(orchid.color)) {
+                    return orchid.color.some(color =>
+                        selectedColors.includes(color.toLowerCase())
+                    );
+                }
+
+                return false;
+            });
+        }
+
+        // Apply type filter
+        if (selectedType && selectedType !== 'all') {
+            if (selectedType === 'nature') {
+                filtered = filtered.filter((orchid) => orchid.nature === true);
+            } else if (selectedType === 'special') {
+                filtered = filtered.filter((orchid) => orchid.special === true);
+            }
         }
 
         set({ filteredOrchids: filtered });
+        get().applySorting();
     },
 
     // Feedback methods
