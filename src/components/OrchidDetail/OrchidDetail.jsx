@@ -10,6 +10,8 @@ import { useState, useEffect } from "react";
 import OrchidCard from "../OrchidCard/OrchidCard";
 import LoadingComponent from "../Loading/Loading";
 import { fetchOrchidsWithCategory, fetchOrchidsWithCategories } from "../../service/api.orchid";
+import { UserAuth } from "../../context/AuthContext";
+import { OrchidFeedback } from "../Feedback/Feedback";
 
 const OrchidDetail = () => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -19,6 +21,7 @@ const OrchidDetail = () => {
     const [orchids, setOrchids] = useState([]);
     const [loading, setLoading] = useState(true);
     const [relatedOrchids, setRelatedOrchids] = useState([]);
+    const { currentUser } = UserAuth();
 
     useEffect(() => {
         const getOrchids = async () => {
@@ -209,9 +212,16 @@ const OrchidDetail = () => {
                 </div>
             </div>
 
+            <span className="ml-2 text-gray-600">
+                {orchidData.feedback ? `(${orchidData.feedback.length} reviews)` : '(No reviews yet)'}
+            </span>
+            <div className="p-6">
+                <OrchidFeedback orchidId={id} />
+            </div>
+
             {/* Related Orchids Section */}
             {relatedOrchids.length > 0 && (
-                <div className="mt-8">
+                <div className="mt-4">
                     <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-4">Related Orchids</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {relatedOrchids.map((orchid, index) => (
@@ -230,8 +240,6 @@ const OrchidDetail = () => {
                     </div>
                 </div>
             )}
-
-
 
             {/* Video Modal */}
             {showVideoModal && (
@@ -266,6 +274,8 @@ const OrchidDetail = () => {
                     </div>
                 </div>
             )}
+
+
         </div>
     );
 };

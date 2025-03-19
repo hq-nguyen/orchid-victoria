@@ -7,7 +7,6 @@ import {
     updateOrchid,
     searchOrchids,
 } from '../service/api.orchid';
-import { addFeedback, deleteFeedback, updateFeedback } from '../service/api.feedback';
 import { getCategories } from '../service/api.category';
 
 const useOrchidStore = create((set, get) => ({
@@ -260,55 +259,6 @@ const useOrchidStore = create((set, get) => ({
 
         set({ filteredOrchids: filtered });
         get().applySorting();
-    },
-
-    // Feedback methods
-    addFeedback: async (orchidId, feedbackData) => {
-        try {
-            set({ loading: true, error: null });
-            const updatedOrchid = await addFeedback(orchidId, feedbackData);
-            set((state) => ({
-                orchids: state.orchids.map((o) => (o.id === orchidId ? updatedOrchid : o)),
-                selectedOrchid: state.selectedOrchid?.id === orchidId ? updatedOrchid : state.selectedOrchid,
-                loading: false,
-            }));
-            return updatedOrchid;
-        } catch (error) {
-            set({ error: error.message, loading: false });
-            return null;
-        }
-    },
-
-    updateFeedback: async (orchidId, authorEmail, feedbackData) => {
-        try {
-            set({ loading: true, error: null });
-            const updatedOrchid = await updateFeedback(orchidId, authorEmail, feedbackData);
-            set((state) => ({
-                orchids: state.orchids.map((o) => (o.id === orchidId ? updatedOrchid : o)),
-                selectedOrchid: state.selectedOrchid?.id === orchidId ? updatedOrchid : state.selectedOrchid,
-                loading: false,
-            }));
-            return updatedOrchid;
-        } catch (error) {
-            set({ error: error.message, loading: false });
-            return null;
-        }
-    },
-
-    deleteFeedback: async (orchidId, authorEmail) => {
-        try {
-            set({ loading: true, error: null });
-            const updatedOrchid = await deleteFeedback(orchidId, authorEmail);
-            set((state) => ({
-                orchids: state.orchids.map((o) => (o.id === orchidId ? updatedOrchid : o)),
-                selectedOrchid: state.selectedOrchid?.id === orchidId ? updatedOrchid : state.selectedOrchid,
-                loading: false,
-            }));
-            return updatedOrchid;
-        } catch (error) {
-            set({ error: error.message, loading: false });
-            return null;
-        }
     },
 }));
 

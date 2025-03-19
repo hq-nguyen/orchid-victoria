@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 import useOrchidStore from "../../store/OrchidStore";
 import LoadingComponent from "../Loading/Loading";
-import { isUserAdmin } from "../../service/auth";
+
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
