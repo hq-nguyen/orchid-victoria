@@ -39,7 +39,7 @@ const FilterBar = () => {
     };
 
     return (
-        <div className="filter-bar space-y-6">
+        <div className="filter-bar space-y-6 sticky top-20">
             {/* Sort By Section */}
             <div className="sort-section">
                 <h3 className="font-medium text-lg mb-2 text-black dark:text-white">Sort By</h3>

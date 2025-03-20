@@ -1,7 +1,6 @@
 import axios from 'axios';
-// import.meta.env.VITE_BASE_URL ||
-const API_URL = 'http://localhost:3000';
-// || 'https://67bc0cf4ed4861e07b38fca1.mockapi.io/';
+const API_URL =  import.meta.env.VITE_BASE_URL 
+// || 'http://localhost:3000' 
 
 // const fetchData = async (endpoint, options = {}) => {
 //     try {
