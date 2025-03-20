@@ -260,6 +260,17 @@ const useOrchidStore = create((set, get) => ({
         set({ filteredOrchids: filtered });
         get().applySorting();
     },
+
+    clearFiltersAndSorting: () => {
+        set({
+            searchQuery: '',
+            selectedCategories: [],
+            selectedColors: [],
+            selectedType: 'all',
+            sortOption: 'featured'
+        });
+        get().applyFilters();
+    },
 }));
 
 export default useOrchidStore;

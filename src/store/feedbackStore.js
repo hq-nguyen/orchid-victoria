@@ -5,6 +5,7 @@ import {
   deleteFeedback, 
   hasUserProvidedFeedback 
 } from '../service/api.feedback';
+import { fetchOrchidById } from '../service/api.orchid';
 
 const useFeedbackStore = create((set, get) => ({
   feedbacks: {},
@@ -16,7 +17,7 @@ const useFeedbackStore = create((set, get) => ({
   loadFeedbacks: async (orchidId) => {
     set({ loading: true, error: null });
     try {
-      const orchid = await fetch(`/orchids/${orchidId}`).then(res => res.json());
+      const orchid = await fetchOrchidById(orchidId);
       set(state => ({
         feedbacks: {
           ...state.feedbacks,

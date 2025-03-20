@@ -23,7 +23,7 @@ const Header = () => {
     // Get auth context
     const { currentUser, login, logout } = UserAuth();
     // Get orchid state
-    const { loading, searchOrchidsAction, searchQuery } = useOrchidStore();
+    const { loading, searchOrchidsAction, searchQuery, clearFiltersAndSorting } = useOrchidStore();
     const [searchText, setSearchText] = useState(searchQuery); // Initialize with searchQuery
 
     const handleSearchSubmit = (e) => {
@@ -50,21 +50,28 @@ const Header = () => {
         if (path === "/") {
             setActiveItem("home");
             searchOrchidsAction('');
+            clearFiltersAndSorting();
         } else if (path === "/about-us") {
             setActiveItem("about");
             searchOrchidsAction('');
+            clearFiltersAndSorting();
         } else if (path === "/news") {
             setActiveItem("news");
             searchOrchidsAction('');
+            clearFiltersAndSorting();
         } else if (path === "/collections") {
             setActiveItem("collections");
         } else if (path === "/contact") {
             setActiveItem("contact");
             searchOrchidsAction('');
+            clearFiltersAndSorting();
         } else if (path !== "/") {
+            clearFiltersAndSorting();
             searchOrchidsAction('');
+            clearFiltersAndSorting();
         } else {
             setActiveItem("");
+            clearFiltersAndSorting();
         }
     }, [location, searchOrchidsAction]);
 
