@@ -28,7 +28,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               to="/collections" 
-              className="bg-rose-600 text-white py-3 px-8 rounded-lg hover:bg-rose-700 transition duration-300 text-lg font-medium"
+              className="bg-rose-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white py-3 px-8 rounded-lg hover:bg-rose-700 transition duration-300 text-lg font-medium"
             >
               Explore Our Orchids
             </Link>
