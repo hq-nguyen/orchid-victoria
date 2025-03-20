@@ -212,10 +212,7 @@ const OrchidDetail = () => {
                 </div>
             </div>
 
-            <span className="ml-2 text-gray-600">
-                {orchidData.feedback ? `(${orchidData.feedback.length} reviews)` : '(No reviews yet)'}
-            </span>
-            <div className="p-6">
+            <div className="py-6">
                 <OrchidFeedback orchidId={id} />
             </div>
 

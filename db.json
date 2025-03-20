@@ -34,7 +34,7 @@
   "orchid": [
     {
       "name": "Selenium Auto Testing",
-      "rating": 4,
+      "rating": 4.7,
       "special": true,
       "nature": true,
       "image": [
@@ -52,6 +52,18 @@
           "comment": "ugly..hmm",
           "author": "quanna303141@gmail.com",
           "date": "2025-03-19T22:06:15.979Z"
+        },
+        {
+          "rating": 5,
+          "comment": "looks so beautiful, I will sure buy one",
+          "author": "ng.haiquan36@gmail.com",
+          "date": "2025-03-19T22:11:13.401Z"
+        },
+        {
+          "rating": 5,
+          "comment": "Looking good haha",
+          "author": "hquan.nguyen6@gmail.com",
+          "date": "2025-03-20T04:03:45.119Z"
         }
       ]
     },
@@ -87,7 +99,7 @@
     },
     {
       "name": "Normal test",
-      "rating": 0,
+      "rating": 4,
       "special": true,
       "image": [
         "https://firebasestorage.googleapis.com/v0/b/heso-hrm.firebasestorage.app/o/images%2Forchid-7.1.jpg?alt=media&token=908b2abc-6948-457d-acfe-7c95a1650c1e"
@@ -98,7 +110,15 @@
       "categoryId": "1",
       "video": "https://www.youtube.com/watch?v=TRBIbSpekHI",
       "nature": true,
-      "id": "9"
+      "id": "9",
+      "feedback": [
+        {
+          "rating": 4,
+          "comment": "I love pink ",
+          "date": "2025-03-20T04:04:13.143Z",
+          "author": "hquan.nguyen6@gmail.com"
+        }
+      ]
     },
     {
       "name": "Mini Yaya",
