@@ -52,23 +52,14 @@ Create a `.env` file in the root directory and add the following:
 # Backend API (you can switch between json-server or MockAPI)
 VITE_BASE_URL=https://your-json-server-or-mockapi-endpoint.com
 
-# Firebase for Storage
-VITE_FIREBASE_STORAGE_API_KEY=your-storage-api-key
-VITE_FIREBASE_STORAGE_AUTH_DOMAIN=your-storage-auth-domain
-VITE_FIREBASE_STORAGE_PROJECT_ID=your-storage-project-id
-VITE_FIREBASE_STORAGE_BUCKET=your-storage-bucket
+# Firebase key
+VITE_FIREBASE_STORAGE_API_KEY=your-api-key
+VITE_FIREBASE_STORAGE_AUTH_DOMAIN=your-auth-domain
+VITE_FIREBASE_STORAGE_PROJECT_ID=your-project-id
+VITE_FIREBASE_STORAGE_BUCKET=your-bucket
 VITE_FIREBASE_STORAGE_MESSAGING_SENDER_ID=your-sender-id
 VITE_FIREBASE_STORAGE_APP_ID=your-app-id
 VITE_FIREBASE_STORAGE_MEASUREMENT_ID=your-measurement-id
-
-# Firebase for Authentication
-VITE_FIREBASE_AUTH_API_KEY=your-auth-api-key
-VITE_FIREBASE_AUTH_AUTH_DOMAIN=your-auth-auth-domain
-VITE_FIREBASE_AUTH_PROJECT_ID=your-auth-project-id
-VITE_FIREBASE_AUTH_STORAGE_BUCKET=your-auth-storage-bucket
-VITE_FIREBASE_AUTH_MESSAGING_SENDER_ID=your-auth-sender-id
-VITE_FIREBASE_AUTH_APP_ID=your-auth-app-id
-VITE_FIREBASE_AUTH_MEASUREMENT_ID=your-auth-measurement-id
 ```
 
 ### 4. Start Development Server
