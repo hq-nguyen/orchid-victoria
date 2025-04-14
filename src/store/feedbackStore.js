@@ -11,9 +11,8 @@ const useFeedbackStore = create((set, get) => ({
   feedbacks: {},
   loading: false,
   error: null,
-  userFeedbackStatus: {}, // Tracks if a user has provided feedback for specific orchids
+  userFeedbackStatus: {},
 
-  // Load feedbacks for a specific orchid
   loadFeedbacks: async (orchidId) => {
     set({ loading: true, error: null });
     try {
@@ -30,7 +29,6 @@ const useFeedbackStore = create((set, get) => ({
     }
   },
 
-  // Add new feedback
   addNewFeedback: async (orchidId, feedbackData, userEmail) => {
     set({ loading: true, error: null });
     try {
@@ -39,10 +37,8 @@ const useFeedbackStore = create((set, get) => ({
         author: userEmail
       });
       
-      // Update the local store
       await get().loadFeedbacks(orchidId);
       
-      // Update user feedback status
       set(state => ({
         userFeedbackStatus: {
           ...state.userFeedbackStatus,
@@ -55,13 +51,11 @@ const useFeedbackStore = create((set, get) => ({
     }
   },
 
-  // Update existing feedback
   updateExistingFeedback: async (orchidId, userEmail, feedbackData) => {
     set({ loading: true, error: null });
     try {
       await updateFeedback(orchidId, userEmail, feedbackData);
       
-      // Update the local store
       await get().loadFeedbacks(orchidId);
       set({ loading: false });
     } catch (error) {
@@ -69,16 +63,11 @@ const useFeedbackStore = create((set, get) => ({
     }
   },
 
-  // Delete feedback
   removeUserFeedback: async (orchidId, userEmail) => {
     set({ loading: true, error: null });
     try {
       await deleteFeedback(orchidId, userEmail);
-      
-      // Update the local store
       await get().loadFeedbacks(orchidId);
-      
-      // Update user feedback status
       set(state => ({
         userFeedbackStatus: {
           ...state.userFeedbackStatus,
@@ -90,10 +79,8 @@ const useFeedbackStore = create((set, get) => ({
       set({ error: error.message, loading: false });
     }
   },
-
-  // Check if the user has already provided feedback
   checkUserFeedbackStatus: async (orchidId, userEmail) => {
-    if (!userEmail) return; // Only check if user is logged in
+    if (!userEmail) return; 
     
     set({ loading: true });
     try {

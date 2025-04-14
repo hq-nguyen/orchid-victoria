@@ -6,27 +6,24 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // Firebase configuration for storage (first Firebase project)
 const storageFirebaseConfig = {
-  apiKey: "AIzaSyAc-g3kLguUfx8X2zOgNHF5onE_QcOoaf0",
-  authDomain: "heso-hrm.firebaseapp.com",
-  projectId: "heso-hrm",
-  storageBucket: "heso-hrm.firebasestorage.app",
-  messagingSenderId: "243212199762",
-  appId: "1:243212199762:web:a5ddddcd9236e525547c8b",
-  measurementId: "G-HGJZP0NJ77",
+  apiKey: import.meta.env.VITE_STORAGE_API_KEY,
+  authDomain: import.meta.env.VITE_STORAGE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_STORAGE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_STORAGE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_STORAGE_APP_ID,
+  measurementId: import.meta.env.VITE_STORAGE_MEASUREMENT_ID,
 };
 
-// Firebase configuration for authentication (second Firebase project)
 const authFirebaseConfig = {
-  apiKey: "AIzaSyDyjg7HKYc3X2w2LHSGLrs_zQH4_mvmGdo",
-  authDomain: "orchid-victoria.firebaseapp.com",
-  projectId: "orchid-victoria",
-  storageBucket: "orchid-victoria.firebasestorage.app",
-  messagingSenderId: "765225214288",
-  appId: "1:765225214288:web:e056639b10f9afa3000c55",
-  measurementId: "G-JCQNSS166S"
+  apiKey: import.meta.env.VITE_AUTH_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_AUTH_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_AUTH_BUCKET,
+  messagingSenderId: import.meta.env.VITE_AUTH_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_AUTH_APP_ID,
+  measurementId: import.meta.env.VITE_AUTH_MEASUREMENT_ID,
 };
-
-// Initialize Firebase apps with different names
 const storageApp = initializeApp(storageFirebaseConfig, "STORAGE_APP");
 const authApp = initializeApp(authFirebaseConfig, "AUTH_APP");
 

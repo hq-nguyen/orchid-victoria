@@ -1,27 +1,5 @@
 import axios from 'axios';
 const API_URL =  import.meta.env.VITE_BASE_URL 
-// || 'http://localhost:3000' 
-
-// const fetchData = async (endpoint, options = {}) => {
-//     try {
-//       const response = await fetch(`${apiUrl}${endpoint}`, {
-//         ...options,
-//         headers: {
-//           'Content-Type': 'application/json',
-//           ...options.headers,
-//         },
-//       });
-      
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! Status: ${response.status}`);
-//       }
-      
-//       return await response.json();
-//     } catch (error) {
-//       console.error('API Error:', error);
-//       throw error;
-//     }
-//   };
 
 const api = axios.create({
   baseURL: API_URL,

@@ -34,7 +34,7 @@
   "orchid": [
     {
       "name": "Selenium Auto Testing",
-      "rating": 4.7,
+      "rating": 4.8,
       "special": true,
       "nature": true,
       "image": [
@@ -64,6 +64,12 @@
           "comment": "Looking good haha",
           "author": "hquan.nguyen6@gmail.com",
           "date": "2025-03-20T04:03:45.119Z"
+        },
+        {
+          "rating": 5,
+          "comment": "looking good ok",
+          "date": "2025-03-20T06:09:58.341Z",
+          "author": "kettek9812@gmail.com"
         }
       ]
     },
@@ -163,7 +169,15 @@
       "origin": "Southeast Asia, Australia",
       "categoryId": "1",
       "video": "https://www.youtube.com/watch?v=SP_-WtYY7jc",
-      "id": "12"
+      "id": "12",
+      "feedback": [
+        {
+          "rating": 5,
+          "comment": "sd",
+          "date": "2025-04-14T21:42:14.172Z",
+          "author": "hquan.nguyen6@gmail.com"
+        }
+      ]
     },
     {
       "name": "Cymbidium orchid",

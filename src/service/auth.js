@@ -49,9 +49,7 @@ export const getCurrentUser = () => {
     });
 };
 
-
 export const isUserAdmin = (email) => {
-    // Define admin emails - in a real app, you'd check this against a database
-    const adminEmails = ['kettek9812@gmail.com']; // Replace with real admin emails
+    const adminEmails = ['kettek9812@gmail.com']; 
     return adminEmails.includes(email);
 };

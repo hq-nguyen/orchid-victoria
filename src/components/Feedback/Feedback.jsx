@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import StarRating from "../../utils/StarRating";
 import { UserAuth } from "../../context/AuthContext";
-import { FaRegUser, FaRegCalendarAlt, FaStar, FaRegCommentDots } from "react-icons/fa";
+import { FaRegUser, FaRegCalendarAlt, FaRegCommentDots } from "react-icons/fa";
 import { format } from "date-fns";
 import useFeedbackStore from "../../store/feedbackStore";
 
